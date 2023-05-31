@@ -4,11 +4,13 @@
   "description": "Contains the api for the restaurant assignment",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "seedDB": "node ./mockData/seedBookingDB.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.1.1",
     "express": "^4.18.2",
     "mongoose": "^7.2.2"
   }
