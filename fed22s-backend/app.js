@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
+const bookingRoutes = require("./src/routes/bookingRoutes");
 
 const app = express();
 
@@ -11,7 +12,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// app.use("/api/v1/bookings", bookingRoutes);
+app.use("/api/v1/bookings", bookingRoutes);
 
 const port = process.env.PORT || 5000;
 async function run() {
