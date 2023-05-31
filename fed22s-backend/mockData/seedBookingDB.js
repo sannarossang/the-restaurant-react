@@ -3,7 +3,7 @@ require("dotenv").config();
 const Booking = require("../src/models/Booking");
 const { bookings } = require("./bookings");
 
-const seedBookingDB = async () => {
+const seedBookingDb = async () => {
   let connection;
   try {
     mongoose.set("strictQuery", false);
@@ -24,4 +24,4 @@ const seedBookingDB = async () => {
   }
 };
 
-seedBookingDB();
+seedBookingDb();
