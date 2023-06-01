@@ -1,3 +1,7 @@
 export const GuestInfo = () => {
-  return <></>;
+  return (
+    <>
+      <h1>Guest info</h1>
+    </>
+  );
 };

@@ -1,3 +1,7 @@
 export const Admin = () => {
-  return <></>;
+  return (
+    <>
+      <h1>Admin</h1>
+    </>
+  );
 };

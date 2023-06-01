@@ -1,3 +1,7 @@
 export const Booking = () => {
-  return <></>;
+  return (
+    <>
+      <h1>Booking</h1>
+    </>
+  );
 };
