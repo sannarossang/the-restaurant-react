@@ -1,3 +1,13 @@
+import { Outlet } from "react-router-dom";
+
 export const Layout = () => {
-  return <></>;
+  return (
+    <>
+      <header></header>
+      <main>
+        <Outlet></Outlet>
+      </main>
+      <footer></footer>
+    </>
+  );
 };
