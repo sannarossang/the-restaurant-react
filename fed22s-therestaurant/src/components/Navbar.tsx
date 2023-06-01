@@ -1,14 +1,21 @@
-import { NavItem, StyledNavbar } from "./styled/Navbar";
+import { Link } from "react-router-dom";
+import { Nav, NavItem, NavWrapper } from "./styled/Navbar";
 
 export const Navbar = () => {
   return (
     <>
-      <StyledNavbar>
-        <NavItem>Hem</NavItem>
-        <NavItem>Meny</NavItem>
-        <NavItem>Kontakt</NavItem>
-        <NavItem>Boka bord</NavItem>
-      </StyledNavbar>
+      <NavWrapper>
+        <Nav>
+          <NavItem>
+            <Link to="/">Hem</Link>
+          </NavItem>
+          <NavItem>Meny</NavItem>
+          <NavItem>Kontakt</NavItem>
+          <NavItem>
+            <Link to="/booking">Boka bord</Link>
+          </NavItem>
+        </Nav>
+      </NavWrapper>
     </>
   );
 };
