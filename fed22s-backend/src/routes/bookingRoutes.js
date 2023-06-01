@@ -8,10 +8,10 @@ const {
 } = require("../controllers/bookingControllers");
 const router = express.Router();
 
-router.post("/", createNewBooking);
 router.get("/", getAllBookings);
-router.get("/:id", getBookingById);
-router.put("/:id", updateBookingById);
-router.delete(":/cartId", deleteBookingById);
+router.get("/:bookingId", getBookingById);
+router.post("/", createNewBooking);
+router.put("/:bookingId", updateBookingById);
+router.delete(":/bookingId", deleteBookingById);
 
 module.exports = router;

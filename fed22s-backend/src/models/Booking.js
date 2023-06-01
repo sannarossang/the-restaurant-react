@@ -23,7 +23,7 @@ const BookingSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  seating: {
+  seatingTime: {
     type: String,
     enum: ["18:00-20:45", "21:00-23:45"],
     /*Eventuellt ändra datatyp till number sedan. Vi tänker att det är enklare att ha det som string
@@ -31,7 +31,7 @@ const BookingSchema = new mongoose.Schema({
     */
     required: true,
   },
-  date: {
+  seatingDate: {
     type: Date,
     required: true,
   },
