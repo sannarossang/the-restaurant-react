@@ -12,6 +12,6 @@ router.get("/", getAllBookings);
 router.get("/:bookingId", getBookingById);
 router.post("/", createNewBooking);
 router.put("/:bookingId", updateBookingById);
-router.delete(":/bookingId", deleteBookingById);
+router.delete("/:bookingId", deleteBookingById);
 
 module.exports = router;

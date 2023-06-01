@@ -1,4 +1,4 @@
-const { getBooking, createBooking, updateBooking } = require("../functions/booking");
+const { getBooking, createBooking, updateBooking, deleteBooking } = require("../functions/booking");
 const Booking = require("../models/Booking");
 
 exports.getAllBookings = async (req, res) => {

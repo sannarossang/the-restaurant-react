@@ -25,7 +25,7 @@ exports.createBooking = async (req, res) => {
       .json(newBooking);
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ message: "Internal error test" });
+    return res.status(500).json({ message: "Internal error" });
   }
 };
 
