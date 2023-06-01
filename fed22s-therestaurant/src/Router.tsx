@@ -3,6 +3,7 @@ import { Layout } from "./components/Layout";
 import { Home } from "./components/Home";
 import { Booking } from "./components/pages/Booking";
 import { Admin } from "./components/pages/Admin";
+import { GuestInfo } from "./components/pages/GuestInfo";
 
 export const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ export const router = createBrowserRouter([
       {
         path: "/booking",
         element: <Booking></Booking>,
+      },
+      {
+        path: "/guestinfo",
+        element: <GuestInfo></GuestInfo>,
       },
       {
         path: "/admin",
