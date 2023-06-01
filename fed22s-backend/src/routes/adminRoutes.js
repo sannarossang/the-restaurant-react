@@ -5,7 +5,7 @@ const {
   getBookingById,
   updateBookingById,
   deleteBookingById,
-} = require("../controllers/bookingControllers");
+} = require("../controllers/adminControllers");
 const router = express.Router();
 
 router.get("/", getAllBookings);
