@@ -2,8 +2,13 @@ const { getBooking, createBooking, updateBooking, deleteBooking } = require("../
 const Booking = require("../models/Booking");
 
 exports.getAllBookings = async (req, res) => {
+  const reqQuery = new Date(req.query.seatingDate);
+  const reqQueryMinusOneDay = new Date().setDate(reqQuery.getDate() - 1);
+  const reqQueryPlusOneDay = new Date().setDate(reqQuery.getDate() + 1);
   try {
-    const bookings = await Booking.find();
+    const bookings = await Booking.find({
+      seatingDate: { $gte: reqQueryMinusOneDay, $lte: reqQueryPlusOneDay },
+    });
     return res.json({
       data: bookings,
       meta: {
