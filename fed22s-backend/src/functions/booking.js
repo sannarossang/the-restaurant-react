@@ -3,6 +3,9 @@ const Booking = require("../models/Booking");
 exports.createBooking = async (req, res) => {
   try {
     const data = req.body;
+
+    //validera http body, återanvända update valideringen? bryta ut till egen funktion?
+
     const booking = new Booking({
       booker: {
         firstname: data.booker.firstname,
@@ -32,12 +35,43 @@ exports.createBooking = async (req, res) => {
 exports.updateBooking = async (req, res) => {
   try {
     const bookingId = req.params.bookingId;
+    if (bookingId.length != 24) {
+      return res.status(400).json({ message: "Invalid id" });
+    }
 
     const { booker, guests, seatingTime, seatingDate, message } = req.body;
+    if (
+      booker &&
+      booker.firstname != undefined &&
+      booker.lastname != undefined &&
+      booker.email != undefined &&
+      booker.phone != undefined
+    ) {
+      return res.status(400).json({ message: "Invalid Booked body" });
+    }
+
+    if (typeof guests === "number" && guests > 0 && guest < 12) {
+      return res.status(400).json({ message: "Invalid guests" });
+    }
+
+    if (typeof message === "string") {
+      return res.status(400).json({ message: "Invalid message" });
+    }
+
+    if (new Date(seatingDate) == "Invalid Date") {
+      return res.status(400).json({ message: "Invalid seatingDate" });
+    }
+
+    //behöver validera korrekt tidsstämpel? använda enum från modellen?
+    if (seatingTime == false) {
+      return res.status(400).json({ message: "Invalid seatingTime" });
+    }
 
     const bookingToUpdate = await Booking.findById(bookingId);
 
-    if (!bookingToUpdate) return res.sendStatus(404);
+    if (!bookingToUpdate) {
+      return res.status(404).json({ message: "Booking not found" });
+    }
 
     if (booker) bookingToUpdate.booker.firstname = booker.firstname;
     if (booker) bookingToUpdate.booker.lastname = booker.lastname;
@@ -47,6 +81,8 @@ exports.updateBooking = async (req, res) => {
     if (seatingTime) bookingToUpdate.seatingTime = seatingTime;
     if (seatingDate) bookingToUpdate.seatingDate = seatingDate;
     if (message) bookingToUpdate.message = message;
+
+    //vilka fält ska admin kunna uppdatera? lägg till ta bort när vi är i front end
 
     const updatedBooking = await bookingToUpdate.save();
 
@@ -60,8 +96,12 @@ exports.updateBooking = async (req, res) => {
 exports.getBooking = async (req, res) => {
   try {
     const bookingId = req.params.bookingId;
+    if (bookingId.length != 24) {
+      return res.status(400).json({ message: "Invalid id" });
+    }
+
     const booking = await Booking.findById(bookingId);
-    if (!bookingId) {
+    if (!booking) {
       return res.status(404).json({ message: "Booking not found" });
     }
     return res.json(booking);
@@ -73,6 +113,10 @@ exports.getBooking = async (req, res) => {
 
 exports.deleteBooking = async (req, res) => {
   const bookingId = req.params.bookingId;
+  if (bookingId.length != 24) {
+    return res.status(400).json({ message: "Invalid id" });
+  }
+
   try {
     const bookingToDelete = await Booking.findById(bookingId);
     if (!bookingToDelete) {

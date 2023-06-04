@@ -2,6 +2,10 @@ const { getBooking, createBooking, updateBooking, deleteBooking } = require("../
 const Booking = require("../models/Booking");
 
 exports.getAllBookings = async (req, res) => {
+  if (new Date(req.query.seatingDate) == "Invalid Date") {
+    return res.status(400).json({ message: "Invalid seatingDate" });
+  }
+
   const reqQuery = new Date(req.query.seatingDate);
   const reqQueryMinusOneDay = new Date().setDate(reqQuery.getDate() - 1);
   const reqQueryPlusOneDay = new Date().setDate(reqQuery.getDate() + 1);
