@@ -39,3 +39,8 @@ export const updateBooking = async (
 
   return response.data;
 };
+
+export const deleteBooking = async (id: string) => {
+  const response = await axios.delete(`${BASE_URL}/admin/${id}`);
+  return response.status;
+};
