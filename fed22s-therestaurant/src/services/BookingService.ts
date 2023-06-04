@@ -16,6 +16,26 @@ export const getBookings = async (): Promise<IBooking[]> => {
   return response;
 };
 
-export const getBooking = async (): Promise<IBooking> => {
-  return await get<IBooking>("/admin/64784e9f49ae597d8c4f9c7f");
+export const getBooking = async (id: string): Promise<IBooking> => {
+  return await get<IBooking>(`/admin/${id}`);
+};
+
+export const updateBooking = async (
+  id: string,
+  booking: IBooking
+): Promise<IBooking> => {
+  const response = await axios.put(`${BASE_URL}/admin/${id}`, {
+    booker: {
+      firstname: booking.booker.firstname,
+      lastname: booking.booker.lastname,
+      email: booking.booker.email,
+      phone: booking.booker.phone,
+    },
+    guests: booking.guests,
+    seatingTime: booking.seatingTime,
+    seatingDate: booking.seatingDate,
+    message: booking.message,
+  });
+
+  return response.data;
 };
