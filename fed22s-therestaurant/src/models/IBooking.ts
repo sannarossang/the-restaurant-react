@@ -8,6 +8,6 @@ export interface IBooking {
 
   guests: number;
   message: string;
-  seating: string;
+  seatingTime: string;
   seatingDate: Date;
 }
