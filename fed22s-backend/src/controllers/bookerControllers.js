@@ -1,6 +1,10 @@
 const { getBooking, createBooking, deleteBooking } = require("../functions/booking");
 const Booking = require("../models/Booking");
 
+exports.getAllBookings = async (req, res) => {
+  return getAllBookings(req, res);
+};
+
 exports.getBookingById = async (req, res) => {
   return getBooking(req, res);
 };
