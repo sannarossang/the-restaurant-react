@@ -10,7 +10,9 @@ export const Navbar = () => {
             <Link to="/">Hem</Link>
           </NavItem>
           <NavItem>Meny</NavItem>
-          <NavItem>Kontakt</NavItem>
+          <NavItem>
+            <Link to="/contact">Kontakta oss</Link>
+          </NavItem>
           <NavItem>
             <Link to="/booking">Boka bord</Link>
           </NavItem>
