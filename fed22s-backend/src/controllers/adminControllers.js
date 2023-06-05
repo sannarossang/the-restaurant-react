@@ -2,26 +2,37 @@ const { getBooking, createBooking, updateBooking, deleteBooking } = require("../
 const Booking = require("../models/Booking");
 
 exports.getAllBookings = async (req, res) => {
-  if (new Date(req.query.seatingDate) == "Invalid Date") {
+  if (new Date(req.query.seatingDate) == "Invalid date") {
     return res.status(400).json({ message: "Invalid seatingDate" });
   }
 
   const reqQuery = new Date(req.query.seatingDate);
   const reqQueryMinusOneDay = new Date().setDate(reqQuery.getDate() - 1);
   const reqQueryPlusOneDay = new Date().setDate(reqQuery.getDate() + 1);
-  try {
-    const bookings = await Booking.find({
-      seatingDate: { $gte: reqQueryMinusOneDay, $lte: reqQueryPlusOneDay },
-    });
+
+  if (!req.query.seatingDate) {
+    const allBookings = await Booking.find();
     return res.json({
-      data: bookings,
+      data: allBookings,
       meta: {
-        count: bookings.length,
+        count: allBookings.length,
       },
     });
-  } catch (error) {
-    console.error(error);
-    return res.status(500).json({ message: "Internal error" });
+  } else {
+    try {
+      const bookingByDate = await Booking.find({
+        seatingDate: { $gte: reqQueryMinusOneDay, $lte: reqQueryPlusOneDay },
+      });
+      return res.json({
+        data: bookingByDate,
+        meta: {
+          count: bookingByDate.length,
+        },
+      });
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ message: "Internal error" });
+    }
   }
 };
 
