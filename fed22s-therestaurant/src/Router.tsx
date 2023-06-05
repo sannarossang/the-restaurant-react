@@ -3,7 +3,7 @@ import { Layout } from "./components/Layout";
 import { Home } from "./components/Home";
 import { Booking } from "./components/pages/Booking";
 import { Admin } from "./components/pages/Admin";
-import { GuestInfo } from "./components/pages/GuestInfo";
+import { Contact } from "./components/pages/Contact";
 
 export const router = createBrowserRouter([
   {
@@ -20,8 +20,8 @@ export const router = createBrowserRouter([
         element: <Booking></Booking>,
       },
       {
-        path: "/guestinfo",
-        element: <GuestInfo></GuestInfo>,
+        path: "/contact",
+        element: <Contact></Contact>,
       },
       {
         path: "/admin",
