@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const HomeWrapper = styled.div`
@@ -26,5 +25,3 @@ export const BookButton = styled.button`
     border: 1px solid black;
   }
 `;
-
-export const StyledLink = styled(Link)``;

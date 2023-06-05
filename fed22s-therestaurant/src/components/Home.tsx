@@ -1,10 +1,5 @@
 import { Link } from "react-router-dom";
-import {
-  BookButton,
-  HomeWrapper,
-  RestaurantTitle,
-  StyledLink,
-} from "./styled/Home/Home";
+import { BookButton, HomeWrapper, RestaurantTitle } from "./styled/Home/Home";
 
 export const Home = () => {
   return (
