@@ -1,29 +1,15 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-
-interface IBooking {
-  data: [];
-}
+import { Link } from "react-router-dom";
+import { BookButton, HomeWrapper, RestaurantTitle } from "./styled/Home/Home";
 
 export const Home = () => {
-  const [bookings, setBookings] = useState([]);
-
-  useEffect(() => {
-    const getBookings = async () => {
-      const bookings = await axios
-        .get<IBooking>("http://localhost:4000/api/v1/admin")
-        .then((response) => response.data.data);
-
-      console.log(bookings);
-    };
-
-    getBookings();
-    setBookings(bookings);
-  });
-
   return (
     <>
-      <h1>Home</h1>
+      <HomeWrapper>
+        <RestaurantTitle>BOOKER</RestaurantTitle>
+        <Link to="/booking">
+          <BookButton>Boka bord</BookButton>
+        </Link>
+      </HomeWrapper>
     </>
   );
 };
