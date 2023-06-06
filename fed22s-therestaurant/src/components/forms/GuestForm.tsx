@@ -1,5 +1,20 @@
 import { useForm } from "react-hook-form";
 import { GuestInput, StyledGuestForm } from "../styled/Forms/GuestForm";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+
+const validationSchema = z.object({
+  firstname: z.string().min(1, { message: "Du måste ange ditt förnamn." }),
+  lastname: z.string().min(1, { message: "Du måste ange ditt efternamn." }),
+  phone: z
+    .string()
+    .min(10, { message: "Du måste ange ett mobilnummer: 070 XXX XX XX" })
+    .max(10, { message: "Du måste ange ett mobilnummer: 070 XXX XX XX" }),
+  email: z
+    .string()
+    .min(1, { message: "Du måste ange din email." })
+    .email({ message: "Du måste ange en email i rätt format. " }),
+});
 
 export const GuestForm = () => {
   const {
