@@ -50,6 +50,7 @@ export const ContactForm = () => {
           <input
             {...register("firstname", {
               required: "Du måste skriva ditt förnamn",
+              pattern: /^[a-zA-Z]+$/,
               minLength: { value: 2, message: "Du måste skriva minst två bokstäver" },
             })}
             type="text"
@@ -60,6 +61,7 @@ export const ContactForm = () => {
           <input
             {...register("lastname", {
               required: "Du måste skriva ditt efternamn",
+              pattern: /^[a-zA-Z]+$/,
               minLength: { value: 2, message: "Du måste skriva minst två bokstäver" },
             })}
             type="text"
@@ -71,6 +73,7 @@ export const ContactForm = () => {
           <input
             {...register("email", {
               required: "Du måste skriva din mejl",
+              pattern: /^\S+@\S+$/i,
               minLength: { value: 2, message: "Du måste skriva minst två bokstäver" },
             })}
             type="text"
@@ -82,6 +85,7 @@ export const ContactForm = () => {
           <input
             {...register("message", {
               required: "Du måste skriva ditt meddelande",
+              maxLength: 20,
               minLength: { value: 2, message: "Du måste skriva minst två bokstäver" },
             })}
             type="text"
