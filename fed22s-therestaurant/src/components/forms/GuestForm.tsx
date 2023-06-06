@@ -16,12 +16,16 @@ const validationSchema = z.object({
     .email({ message: "Du måste ange en email i rätt format. " }),
 });
 
+type ValidationSchema = z.infer<typeof validationSchema>;
+
 export const GuestForm = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm<ValidationSchema>({
+    resolver: zodResolver(validationSchema),
+  });
 
   return (
     <>
@@ -32,17 +36,13 @@ export const GuestForm = () => {
       >
         <GuestInput
           type="text"
-          {...register("firstname", {
-            required: "Du måste ange ditt förnamn.",
-          })}
+          {...register("firstname")}
           placeholder="Förnamn"
         ></GuestInput>
 
         <GuestInput
           type="text"
-          {...register("lastname", {
-            required: "Du måste ange ditt efternamn.",
-          })}
+          {...register("lastname")}
           placeholder="Efternamn"
         ></GuestInput>
         <GuestInput
@@ -52,13 +52,7 @@ export const GuestForm = () => {
         ></GuestInput>
         <GuestInput
           type="email"
-          {...register("email", {
-            required: "Du måste ange din email.",
-            pattern: {
-              value: /\S+@\S+\.\S+/,
-              message: "Du måste ange rätt en email i rätt format. ",
-            },
-          })}
+          {...register("email")}
           placeholder="förnamn.efternam@email.com"
         ></GuestInput>
 
