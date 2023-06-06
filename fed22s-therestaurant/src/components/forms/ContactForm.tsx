@@ -1,22 +1,27 @@
-import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useEffect, useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { IContactFormInput } from "../../models/IContactFormInput";
 
 export const ContactForm = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
-  } = useForm({
+    formState,
+    formState: { errors, dirtyFields, touchedFields, isValid },
+  } = useForm<IContactFormInput>({
+    mode: "onChange",
     defaultValues: {
-      firstname: "Sebastian",
-      lastname: "Tegel",
-      email: "sebbe@tegel.com",
-      message: "Älskar er restaurang, men...",
+      firstname: "",
+      lastname: "",
+      email: "",
+      message: "",
     },
   });
 
+  const onSubmit: SubmitHandler<IContactFormInput> = data => console.log(data);
+
   //   const [submitted, setSubmitted] = useState(false);
-  //   const handleSubmit = () => {
+  //   const handleSubmitNew = () => {
   //     setSubmitted(true);
   //   };
 
@@ -29,22 +34,26 @@ export const ContactForm = () => {
   //   }
 
   console.log(errors);
+  console.log("dirtyFields", dirtyFields);
+  console.log("touchedFields", touchedFields);
+  console.log("isValid", isValid);
+
+  useEffect(() => {
+    console.log("useEffect", formState.errors);
+  }, [formState]);
 
   return (
     <>
       <div>
         <h1>Contact us</h1>
-        <form
-          onSubmit={handleSubmit(data => {
-            console.log(data);
-          })}
-        >
+        <form onSubmit={handleSubmit(onSubmit)}>
           <input
             {...register("firstname", {
               required: "Du måste skriva ditt förnamn",
               minLength: { value: 2, message: "Du måste skriva minst två bokstäver" },
             })}
             type="text"
+            placeholder="firstname"
           />
           <p>{errors.firstname?.message}</p>
 
@@ -55,6 +64,7 @@ export const ContactForm = () => {
             })}
             type="text"
             name="lastname"
+            placeholder="lastname"
           />
           <p>{errors.lastname?.message}</p>
 
@@ -65,6 +75,7 @@ export const ContactForm = () => {
             })}
             type="text"
             name="email"
+            placeholder="email"
           />
           <p>{errors.email?.message}</p>
 
@@ -75,6 +86,7 @@ export const ContactForm = () => {
             })}
             type="text"
             name="message"
+            placeholder="message"
           />
           <p>{errors.message?.message}</p>
 
