@@ -8,8 +8,9 @@ const validationSchema = z.object({
   lastname: z.string().min(1, { message: "Du måste ange ditt efternamn." }),
   phone: z
     .string()
-    .min(10, { message: "Du måste ange ett mobilnummer: 070 XXX XX XX" })
-    .max(10, { message: "Du måste ange ett mobilnummer: 070 XXX XX XX" }),
+    .min(1, { message: "Du måste ange ett mobilnummer" })
+    .min(10, { message: "Mobilnumret ska vara i formatet: 070 XXX XX XX" })
+    .max(10, { message: "Mobilnumret ska vara i formatet: 070 XXX XX XX" }),
   email: z
     .string()
     .min(1, { message: "Du måste ange din email." })
@@ -30,8 +31,8 @@ export const GuestForm = () => {
   return (
     <>
       <StyledGuestForm
-        onSubmit={handleSubmit(() => {
-          console.log(errors);
+        onSubmit={handleSubmit((data) => {
+          console.log(data);
         })}
       >
         <GuestInput
@@ -39,23 +40,26 @@ export const GuestForm = () => {
           {...register("firstname")}
           placeholder="Förnamn"
         ></GuestInput>
+        <p>{errors.firstname?.message}</p>
 
         <GuestInput
           type="text"
           {...register("lastname")}
           placeholder="Efternamn"
         ></GuestInput>
+        <p>{errors.lastname?.message}</p>
         <GuestInput
           type="text"
           {...register("phone")}
           placeholder="070 XXX XX XX"
         ></GuestInput>
+        <p>{errors.phone?.message}</p>
         <GuestInput
           type="email"
           {...register("email")}
-          placeholder="förnamn.efternam@email.com"
+          placeholder="emailadress@gmail.com"
         ></GuestInput>
-
+        <p>{errors.email?.message}</p>
         <button>Spara</button>
       </StyledGuestForm>
     </>
