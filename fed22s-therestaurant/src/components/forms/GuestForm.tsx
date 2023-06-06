@@ -24,16 +24,19 @@ export const GuestForm = () => {
         ></GuestInput>
 
         <GuestInput
+          type="text"
           {...register("lastname", {
             required: "Du måste ange ditt efternamn.",
           })}
           placeholder="Efternamn"
         ></GuestInput>
         <GuestInput
+          type="text"
           {...register("phone")}
           placeholder="070 XXX XX XX"
         ></GuestInput>
         <GuestInput
+          type="email"
           {...register("email", {
             required: "Du måste ange din email.",
             pattern: {
