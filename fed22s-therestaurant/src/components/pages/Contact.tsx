@@ -1,9 +1,12 @@
 import { ContactForm } from "../forms/ContactForm";
+import { ContactWrapper } from "../styled/Contact/Contact";
 
 export const Contact = () => {
   return (
     <>
-      <ContactForm></ContactForm>
+      <ContactWrapper>
+        <ContactForm></ContactForm>
+      </ContactWrapper>
     </>
   );
 };

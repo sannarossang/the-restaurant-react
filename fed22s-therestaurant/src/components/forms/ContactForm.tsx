@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
-import { SubmitHandler, useForm, useController } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { IContactFormInput } from "../../models/IContactFormInput";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { string, z } from "zod";
+import { ContactFormWrapper, ContactTitle } from "../styled/Contact/ContactForm";
+import { BookButton } from "../styled/Home/Home";
 
 const schema = z.object({
   firstname: string().min(2, { message: "Du måste skriva ett efternamn som är minst två tecken långt" }),
@@ -33,8 +34,8 @@ export const ContactForm = () => {
 
   return (
     <>
-      <div>
-        <h1>Contact us</h1>
+      <ContactFormWrapper>
+        <ContactTitle>Contact us</ContactTitle>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div>
             <input
@@ -84,10 +85,10 @@ export const ContactForm = () => {
           </div>
 
           <div>
-            <button type="submit">Contact us</button>
+            <BookButton type="submit">Spara skiten</BookButton>
           </div>
         </form>
-      </div>
+      </ContactFormWrapper>
     </>
   );
 };
