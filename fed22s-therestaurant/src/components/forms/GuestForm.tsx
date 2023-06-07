@@ -14,7 +14,7 @@ const validationSchema = z.object({
   email: z
     .string()
     .min(1, { message: "Du måste ange din email." })
-    .email({ message: "Du måste ange en email i rätt format. " }),
+    .email({ message: "Du måste ange en email i rätt format." }),
 });
 
 type ValidationSchema = z.infer<typeof validationSchema>;
