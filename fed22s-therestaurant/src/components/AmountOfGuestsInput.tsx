@@ -2,11 +2,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { FormEvent } from "react";
 import { SubmitHandler, useForm, useController } from "react-hook-form";
 import { number, z } from "zod";
-import { IAmoutOfGuestsInput } from "../models/IAmoutOfGuestsInput";
+import { IAmountOfGuestsInput, IAmoutOfGuestsInput } from "../models/IAmountOfGuestsInput";
 import Select from "react-select";
 import { IContactFormInput } from "../models/IContactFormInput";
 
-const guestAmoutInputOptions = [
+const guestAmountInputOptions = [
   { value: 1, label: "1" },
   { value: 2, label: "2" },
   { value: 3, label: "3" },
@@ -22,11 +22,11 @@ const guestAmoutInputOptions = [
 ];
 
 const schema = z.object({
-  amout: number().min(2, { message: "Du måste skriva ett efternamn som är minst två tecken långt" }),
+  amout: number().min(2, { message: "Du måste skriva xxx" }),
 });
 
-export const AmoutOfGuestInput = () => {
-  const { register, handleSubmit, control, formState } = useForm<IAmoutOfGuestsInput>({
+export const AmountOfGuestsInput = () => {
+  const { register, handleSubmit, control, formState } = useForm<IAmountOfGuestsInput>({
     mode: "onChange",
     resolver: zodResolver(schema),
     defaultValues: {
@@ -36,9 +36,9 @@ export const AmoutOfGuestInput = () => {
 
   const { field } = useController({ name: "amount", control });
   const { errors } = formState;
-  const onSubmit: SubmitHandler<IAmoutOfGuestsInput> = data => console.log(data);
+  const onSubmit: SubmitHandler<IAmountOfGuestsInput> = data => console.log(data);
 
-  const handleSelectChange = (option: { value: typeof guestAmoutInputOptions }) => {
+  const handleSelectChange = (option: { value: typeof guestAmountInputOptions }) => {
     field.onChange(option.value);
   };
 
@@ -51,9 +51,9 @@ export const AmoutOfGuestInput = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
           <Select
-            value={guestAmoutInputOptions.find(({ value }) => value === field.value)}
+            value={guestAmountInputOptions.find(({ value }) => value === field.value)}
             onChange={handleSelectChange}
-            options={guestAmoutInputOptions}
+            options={guestAmountInputOptions}
             {...register("amount", {
               // pattern: X
             })}
