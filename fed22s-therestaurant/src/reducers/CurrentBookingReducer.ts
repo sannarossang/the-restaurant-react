@@ -1,4 +1,7 @@
-export interface IAction {}
+export interface IAction {
+  type: ActionType;
+  payload: any;
+}
 
 export enum ActionType {
   SELECTED_AMOUNT_OF_GUESTS,
