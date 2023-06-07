@@ -5,7 +5,6 @@ const {
   getBookingById,
   deleteBookingById,
 } = require("../controllers/bookerControllers");
-const { getAllBookings } = require("../functions/booking");
 const router = express.Router();
 
 router.get("/", getAllBookings);
