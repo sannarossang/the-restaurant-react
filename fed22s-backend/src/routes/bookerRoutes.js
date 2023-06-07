@@ -1,11 +1,10 @@
 const express = require("express");
 const {
-  createNewBooking,
   getAllBookings,
   getBookingById,
+  createNewBooking,
   deleteBookingById,
 } = require("../controllers/bookerControllers");
-const { getAllBookings } = require("../functions/booking");
 const router = express.Router();
 
 router.get("/", getAllBookings);
