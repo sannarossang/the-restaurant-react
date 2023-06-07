@@ -1,7 +1,12 @@
+import { ContactForm } from "../forms/ContactForm";
+import { ContactWrapper } from "../styled/Contact/Contact";
+
 export const Contact = () => {
   return (
     <>
-      <h1>Guest info</h1>
+      <ContactWrapper>
+        <ContactForm></ContactForm>
+      </ContactWrapper>
     </>
   );
 };

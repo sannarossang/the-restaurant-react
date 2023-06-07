@@ -1,8 +1,8 @@
 const express = require("express");
 const {
-  createNewBooking,
   getAllBookings,
   getBookingById,
+  createNewBooking,
   updateBookingById,
   deleteBookingById,
 } = require("../controllers/adminControllers");
