@@ -2,7 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { FormEvent } from "react";
 import { SubmitHandler, useForm, useController } from "react-hook-form";
 import { number, z } from "zod";
-import { IAmountOfGuestsInput, IAmoutOfGuestsInput } from "../models/IAmountOfGuestsInput";
+import { IAmountOfGuestsInput } from "../models/IAmountOfGuestsInput";
 import Select from "react-select";
 import { IContactFormInput } from "../models/IContactFormInput";
 
