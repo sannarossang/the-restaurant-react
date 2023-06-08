@@ -51,16 +51,7 @@ export const Admin = () => {
         <p>Bokningar</p>
         <ul>
           {bookings.filteredBooking.map(b => (
-            <li key={b.booker.email}>
-              {b.booker.firstname}
-              {b.booker.lastname}
-              {b.booker.email}
-              {b.booker.phone}
-              {b.guests}
-              {b.seatingTime}
-              {b.seatingDate}
-              {b.message}
-            </li>
+            <li key={b.booker.email}>{b.booker.firstname}</li>
           ))}
         </ul>
       </div>
