@@ -13,6 +13,7 @@ import {
 } from "../../contexts/CurrentBookingContext";
 import { ActionType } from "../../reducers/CurrentBookingReducer";
 import { IBooking } from "../../models/IBooking";
+import { createNewBooking } from "../../services/BookingService";
 
 const validationSchema = z.object({
   firstname: z.string().min(1, { message: "Du måste ange ditt förnamn." }),
@@ -47,11 +48,11 @@ export const GuestForm = () => {
     <>
       <StyledGuestForm
         onSubmit={handleSubmit((data) => {
-          console.log(currentbooking);
           dispatch({
             type: ActionType.ADDED_CONTACT_DETAILS,
             payload: data,
           });
+          createNewBooking("booker", currentbooking);
         })}
       >
         <GuestInput
