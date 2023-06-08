@@ -21,7 +21,7 @@ export const Booking = () => {
     guests: 0,
     message: "",
     seatingTime: "",
-    seatingDate: new Date(),
+    seatingDate: "",
     _id: "",
   });
 

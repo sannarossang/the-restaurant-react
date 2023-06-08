@@ -43,8 +43,8 @@ export const BookingReducer = (
           booking.booker.lastname.toLowerCase() === action.payload ||
           booking.booker.email.toLowerCase() === action.payload ||
           booking.booker.phone === action.payload ||
-          booking.seatingDate.toString() === action.payload ||
-          booking.seatingTime.toString() === action.payload ||
+          booking.seatingDate === action.payload ||
+          booking.seatingTime === action.payload ||
           booking.guests === +action.payload ||
           booking._id === action.payload
       );
