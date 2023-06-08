@@ -19,3 +19,8 @@ export const GuestInput = styled.input`
   width: 100%;
   height: 10vh;
 `;
+
+export const MessageInput = styled.input`
+  width: 100%;
+  height: 15vh;
+`;
