@@ -84,9 +84,9 @@ export const GuestForm = () => {
         <MessageInput
           type="text"
           {...register("message")}
-          placeholder="meddelande till restaurangen"
+          placeholder="Eventuella allergier eller andra önskemål"
         ></MessageInput>
-        <button>Spara</button>
+        <button>Nästa</button>
       </StyledGuestForm>
     </>
   );
