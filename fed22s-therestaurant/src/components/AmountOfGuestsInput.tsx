@@ -3,6 +3,12 @@ import { SubmitHandler, useForm, useController } from "react-hook-form";
 import { number, z } from "zod";
 import { IAmountOfGuestsInput } from "../models/IAmountOfGuestsInput";
 import Select, { SingleValue } from "react-select";
+import { useContext } from "react";
+import {
+  CurrentBookingContext,
+  CurrentBookingDispatchContext,
+} from "../contexts/CurrentBookingContext";
+import { ActionType } from "../reducers/CurrentBookingReducer";
 
 const guestAmountInputOptions = [
   { value: 1, label: "1" },
@@ -24,20 +30,32 @@ const schema = z.object({
 });
 
 export const AmountOfGuestsInput = () => {
-  const { register, handleSubmit, control, formState } = useForm<IAmountOfGuestsInput>({
-    mode: "onChange",
-    resolver: zodResolver(schema),
-    defaultValues: {
-      amount: "",
-    },
-  });
+  const currentBooking = useContext(CurrentBookingContext);
+  const dispatch = useContext(CurrentBookingDispatchContext);
+
+  const { register, handleSubmit, control, formState } =
+    useForm<IAmountOfGuestsInput>({
+      mode: "onChange",
+      resolver: zodResolver(schema),
+      defaultValues: {
+        amount: "",
+      },
+    });
 
   const { field } = useController({ name: "amount", control });
   const { errors } = formState;
-  const onSubmit: SubmitHandler<IAmountOfGuestsInput> = data => console.log(data);
+  const onSubmit: SubmitHandler<IAmountOfGuestsInput> = (data) =>
+    console.log(data);
 
-  const handleSelectChange = (selectedValue: SingleValue<{ value: number }>) => {
+  const handleSelectChange = (
+    selectedValue: SingleValue<{ value: number }>
+  ) => {
+    console.log("Handle select change körs", selectedValue?.value);
     selectedValue?.value;
+    dispatch({
+      type: ActionType.SELECTED_AMOUNT_OF_GUESTS,
+      payload: selectedValue?.value,
+    });
   };
 
   return (
@@ -45,7 +63,9 @@ export const AmountOfGuestsInput = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
           <Select
-            value={guestAmountInputOptions.find(({ value }) => value === field.value)}
+            value={guestAmountInputOptions.find(
+              ({ value }) => value === field.value
+            )}
             onChange={handleSelectChange}
             options={guestAmountInputOptions}
             placeholder="amount"
@@ -53,6 +73,8 @@ export const AmountOfGuestsInput = () => {
           <p>{errors.amount?.message}</p>
         </div>
       </form>
+
+      <button onClick={() => console.log(currentBooking)}>Logga</button>
     </>
   );
 };
