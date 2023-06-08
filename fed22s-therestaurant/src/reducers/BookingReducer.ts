@@ -13,10 +13,7 @@ export enum ActionType {
   GOT_ONE_BOOKING,
 }
 
-export const BookingReducer = (
-  bookings: IBooking[],
-  action: IAction
-): IBooking[] => {
+export const BookingReducer = (bookings: IBooking[], action: IAction): IBooking[] => {
   switch (action.type) {
     case ActionType.CREATED: {
     }
@@ -28,6 +25,7 @@ export const BookingReducer = (
     }
 
     case ActionType.GOT_ALL_BOOKINGS: {
+      return JSON.parse(action.payload);
     }
 
     case ActionType.GOT_ONE_BOOKING: {
