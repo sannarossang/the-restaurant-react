@@ -1,3 +1,4 @@
+import { IBookingContext } from "../contexts/BookingContext";
 import { IBooking } from "../models/IBooking";
 
 export interface IAction {
@@ -13,7 +14,7 @@ export enum ActionType {
   GOT_ONE_BOOKING,
 }
 
-export const BookingReducer = (bookings: IBooking[], action: IAction): IBooking[] => {
+export const BookingReducer = (bookings: IBookingContext, action: IAction): IBookingContext => {
   switch (action.type) {
     case ActionType.CREATED: {
     }
