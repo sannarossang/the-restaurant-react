@@ -4,7 +4,12 @@ import { ActionType, BookingReducer } from "../../reducers/BookingReducer";
 import { getBookings } from "../../services/BookingService";
 
 export const Admin = () => {
-  const [bookings, dispatch] = useReducer(BookingReducer, []);
+  const bookingStates = {
+    allBookings: [],
+    filteredBooking: [],
+  };
+
+  const [bookings, dispatch] = useReducer(BookingReducer, bookingStates);
 
   useEffect(() => {
     const getData = async () => {
@@ -13,10 +18,8 @@ export const Admin = () => {
       dispatch({ type: ActionType.GOT_ALL_BOOKINGS, payload: JSON.stringify(dataFromApi) });
     };
 
-    if (bookings.length === 0) getData();
+    if (bookings.allBookings.length === 0) getData();
   }, [bookings]);
-
-  console.log("boookings", bookings);
 
   return (
     <>
@@ -27,9 +30,8 @@ export const Admin = () => {
       <input type="text"></input>
       <div>
         <p>Resultat</p>
-
         <ul>
-          {bookings.map(b => (
+          {bookings.allBookings.map(b => (
             <li key={b.booker.firstname}>{b.booker.firstname}</li>
           ))}
         </ul>
