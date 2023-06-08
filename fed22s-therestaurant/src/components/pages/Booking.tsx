@@ -30,10 +30,18 @@ export const Booking = () => {
       <CurrentBookingContext.Provider value={currentBooking}>
         <CurrentBookingDispatchContext.Provider value={dispatch}>
           ¨<h1>Booking</h1>
-          <AmountOfGuestsInput />
-          <CalendarView />
-          <AvailableTimes />
-          <GuestForm />
+          {!currentBooking.guests ? <AmountOfGuestsInput /> : <></>}
+          {currentBooking.guests && !currentBooking.seatingDate ? (
+            <CalendarView />
+          ) : (
+            <></>
+          )}
+          {currentBooking.seatingDate && !currentBooking.seatingTime ? (
+            <AvailableTimes />
+          ) : (
+            <></>
+          )}
+          {currentBooking.seatingTime ? <GuestForm /> : <></>}
         </CurrentBookingDispatchContext.Provider>
       </CurrentBookingContext.Provider>
     </>
