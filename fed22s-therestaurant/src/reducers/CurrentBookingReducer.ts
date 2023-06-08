@@ -32,6 +32,7 @@ export const CurrentBookingReducer = (
     }
 
     case ActionType.ADDED_CONTACT_DETAILS: {
+      return { ...booking, booker: action.payload };
     }
   }
 
