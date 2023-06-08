@@ -23,6 +23,8 @@ export const CurrentBookingReducer = (
     }
 
     case ActionType.SELECTED_SEATING_DATE: {
+      console.log("Reducer körs, selected seating date");
+      return { ...booking, seatingDate: action.payload };
     }
 
     case ActionType.SELECTED_SEATING_TIME: {
