@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { SubmitHandler, useForm, useController } from "react-hook-form";
+import { useForm, useController } from "react-hook-form";
 import { number, z } from "zod";
 import { IAmountOfGuestsInput } from "../models/IAmountOfGuestsInput";
 import Select, { SingleValue } from "react-select";
@@ -33,24 +33,20 @@ export const AmountOfGuestsInput = () => {
   const currentBooking = useContext(CurrentBookingContext);
   const dispatch = useContext(CurrentBookingDispatchContext);
 
-  const { register, handleSubmit, control, formState } =
-    useForm<IAmountOfGuestsInput>({
-      mode: "onChange",
-      resolver: zodResolver(schema),
-      defaultValues: {
-        amount: "",
-      },
-    });
+  const { control, formState } = useForm<IAmountOfGuestsInput>({
+    mode: "onChange",
+    resolver: zodResolver(schema),
+    defaultValues: {
+      amount: "",
+    },
+  });
 
   const { field } = useController({ name: "amount", control });
   const { errors } = formState;
-  const onSubmit: SubmitHandler<IAmountOfGuestsInput> = (data) =>
-    console.log(data);
 
   const handleSelectChange = (
     selectedValue: SingleValue<{ value: number }>
   ) => {
-    console.log("Handle select change körs", selectedValue?.value);
     selectedValue?.value;
     dispatch({
       type: ActionType.SELECTED_AMOUNT_OF_GUESTS,
@@ -60,7 +56,7 @@ export const AmountOfGuestsInput = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form>
         <div>
           <Select
             value={guestAmountInputOptions.find(
@@ -73,8 +69,6 @@ export const AmountOfGuestsInput = () => {
           <p>{errors.amount?.message}</p>
         </div>
       </form>
-
-      <button onClick={() => console.log(currentBooking)}>Logga</button>
     </>
   );
 };
