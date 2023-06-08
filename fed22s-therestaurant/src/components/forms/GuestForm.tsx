@@ -1,5 +1,9 @@
 import { useForm } from "react-hook-form";
-import { GuestInput, StyledGuestForm } from "../styled/Forms/GuestForm";
+import {
+  GuestInput,
+  MessageInput,
+  StyledGuestForm,
+} from "../styled/Forms/GuestForm";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useContext } from "react";
@@ -8,6 +12,7 @@ import {
   CurrentBookingDispatchContext,
 } from "../../contexts/CurrentBookingContext";
 import { ActionType } from "../../reducers/CurrentBookingReducer";
+import { IBooking } from "../../models/IBooking";
 
 const validationSchema = z.object({
   firstname: z.string().min(1, { message: "Du måste ange ditt förnamn." }),
@@ -21,6 +26,7 @@ const validationSchema = z.object({
     .string()
     .min(1, { message: "Du måste ange din email." })
     .email({ message: "Du måste ange en email i rätt format." }),
+  message: z.string(),
 });
 
 type ValidationSchema = z.infer<typeof validationSchema>;
@@ -37,13 +43,15 @@ export const GuestForm = () => {
   const dispatch = useContext(CurrentBookingDispatchContext);
   const currentbooking = useContext(CurrentBookingContext);
 
-  console.log("GUEST FORM", currentbooking);
-
   return (
     <>
       <StyledGuestForm
         onSubmit={handleSubmit((data) => {
-          dispatch({ type: ActionType.ADDED_CONTACT_DETAILS, payload: data });
+          console.log(currentbooking);
+          dispatch({
+            type: ActionType.ADDED_CONTACT_DETAILS,
+            payload: data,
+          });
         })}
       >
         <GuestInput
@@ -71,6 +79,12 @@ export const GuestForm = () => {
           placeholder="emailadress@gmail.com"
         ></GuestInput>
         <p>{errors.email?.message}</p>
+
+        <MessageInput
+          type="text"
+          {...register("message")}
+          placeholder="meddelande till restaurangen"
+        ></MessageInput>
         <button>Spara</button>
       </StyledGuestForm>
     </>
