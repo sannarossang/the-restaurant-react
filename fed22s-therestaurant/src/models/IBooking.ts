@@ -10,4 +10,5 @@ export interface IBooking {
   message: string;
   seatingTime: string;
   seatingDate: Date;
+  _id: string;
 }

@@ -1,5 +1,8 @@
 import { ChangeEvent, useEffect, useReducer, useState } from "react";
-import { BookingContext, BookingDispatchContext } from "../../contexts/BookingContext";
+import {
+  BookingContext,
+  BookingDispatchContext,
+} from "../../contexts/BookingContext";
 import { ActionType, BookingReducer } from "../../reducers/BookingReducer";
 import { getBookings } from "../../services/BookingService";
 
@@ -16,7 +19,10 @@ export const Admin = () => {
     const getData = async () => {
       const dataFromApi = await getBookings();
 
-      dispatch({ type: ActionType.GOT_ALL_BOOKINGS, payload: JSON.stringify(dataFromApi) });
+      dispatch({
+        type: ActionType.GOT_ALL_BOOKINGS,
+        payload: JSON.stringify(dataFromApi),
+      });
     };
 
     if (bookings.allBookings.length === 0) getData();
@@ -42,7 +48,9 @@ export const Admin = () => {
   return (
     <>
       <BookingContext.Provider value={bookings}>
-        <BookingDispatchContext.Provider value={dispatch}></BookingDispatchContext.Provider>
+        <BookingDispatchContext.Provider
+          value={dispatch}
+        ></BookingDispatchContext.Provider>
       </BookingContext.Provider>
       <h1>Admin</h1>
       <input type="text" onChange={handleChange}></input>
@@ -50,8 +58,8 @@ export const Admin = () => {
       <div>
         <p>Bokningar</p>
         <ul>
-          {bookings.filteredBooking.map(b => (
-            <li key={b.booker.email}>{b.booker.firstname}</li>
+          {bookings.filteredBooking.map((b) => (
+            <li key={b._id}>{b.booker.firstname}</li>
           ))}
         </ul>
       </div>

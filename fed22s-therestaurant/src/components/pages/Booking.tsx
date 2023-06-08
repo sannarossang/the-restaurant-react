@@ -22,6 +22,7 @@ export const Booking = () => {
     message: "",
     seatingTime: "",
     seatingDate: new Date(),
+    _id: "",
   });
 
   return (
