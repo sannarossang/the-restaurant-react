@@ -12,7 +12,6 @@ type Value = ValuePiece | [ValuePiece, ValuePiece];
 
 export const CalendarView = () => {
   const [date, setDate] = useState<Value>(new Date());
-  const currentBooking = useContext(CurrentBookingContext);
   const dispatch = useContext(CurrentBookingDispatchContext);
 
   const handleChange = (date: Value) => {
@@ -25,7 +24,11 @@ export const CalendarView = () => {
 
   return (
     <>
-      <Calendar onChange={handleChange} value={date}></Calendar>
+      <Calendar
+        minDate={new Date()}
+        onChange={handleChange}
+        value={date}
+      ></Calendar>
     </>
   );
 };
