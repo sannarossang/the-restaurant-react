@@ -28,6 +28,7 @@ export const CurrentBookingReducer = (
     }
 
     case ActionType.SELECTED_SEATING_TIME: {
+      return { ...booking, seatingTime: action.payload };
     }
 
     case ActionType.ADDED_CONTACT_DETAILS: {
