@@ -14,6 +14,7 @@ export const CurrentBookingContext = createContext<IBooking>({
   message: "",
   seatingTime: "",
   seatingDate: new Date(),
+  _id: "",
 });
 
 export const CurrentBookingDispatchContext = createContext<Dispatch<IAction>>(
