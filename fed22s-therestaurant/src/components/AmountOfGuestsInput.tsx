@@ -1,10 +1,8 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { FormEvent } from "react";
 import { SubmitHandler, useForm, useController } from "react-hook-form";
 import { number, z } from "zod";
 import { IAmountOfGuestsInput } from "../models/IAmountOfGuestsInput";
-import Select from "react-select";
-import { IContactFormInput } from "../models/IContactFormInput";
+import Select, { SingleValue } from "react-select";
 
 const guestAmountInputOptions = [
   { value: 1, label: "1" },
@@ -38,13 +36,9 @@ export const AmountOfGuestsInput = () => {
   const { errors } = formState;
   const onSubmit: SubmitHandler<IAmountOfGuestsInput> = data => console.log(data);
 
-  const handleSelectChange = (option: { value: typeof guestAmountInputOptions }) => {
-    field.onChange(option.value);
+  const handleSelectChange = (selectedValue: SingleValue<{ value: number }>) => {
+    selectedValue?.value;
   };
-
-  // const handleSave = (e: FormEvent) => {
-  //   e.preventDefault();
-  // };
 
   return (
     <>
@@ -54,10 +48,6 @@ export const AmountOfGuestsInput = () => {
             value={guestAmountInputOptions.find(({ value }) => value === field.value)}
             onChange={handleSelectChange}
             options={guestAmountInputOptions}
-            {...register("amount", {
-              // pattern: X
-            })}
-            type="text"
             placeholder="amount"
           />
           <p>{errors.amount?.message}</p>
