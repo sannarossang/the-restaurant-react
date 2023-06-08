@@ -2,6 +2,12 @@ import { useForm } from "react-hook-form";
 import { GuestInput, StyledGuestForm } from "../styled/Forms/GuestForm";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { useContext } from "react";
+import {
+  CurrentBookingContext,
+  CurrentBookingDispatchContext,
+} from "../../contexts/CurrentBookingContext";
+import { ActionType } from "../../reducers/CurrentBookingReducer";
 
 const validationSchema = z.object({
   firstname: z.string().min(1, { message: "Du måste ange ditt förnamn." }),
@@ -28,11 +34,16 @@ export const GuestForm = () => {
     resolver: zodResolver(validationSchema),
   });
 
+  const dispatch = useContext(CurrentBookingDispatchContext);
+  const currentbooking = useContext(CurrentBookingContext);
+
+  console.log("GUEST FORM", currentbooking);
+
   return (
     <>
       <StyledGuestForm
         onSubmit={handleSubmit((data) => {
-          console.log(data);
+          dispatch({ type: ActionType.ADDED_CONTACT_DETAILS, payload: data });
         })}
       >
         <GuestInput
