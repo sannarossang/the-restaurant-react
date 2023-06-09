@@ -1,5 +1,8 @@
 import { ChangeEvent, useEffect, useReducer, useState } from "react";
-import { BookingContext, BookingDispatchContext } from "../../contexts/BookingContext";
+import {
+  BookingContext,
+  BookingDispatchContext,
+} from "../../contexts/BookingContext";
 import { ActionType, BookingReducer } from "../../reducers/BookingReducer";
 import { getBookings } from "../../services/BookingService";
 import {
@@ -57,40 +60,6 @@ export const Admin = () => {
   return (
     <>
       <BookingContext.Provider value={bookings}>
-        <BookingDispatchContext.Provider value={dispatch}></BookingDispatchContext.Provider>
-      </BookingContext.Provider>
-      <h1>Admin</h1>
-      <input type="text" onChange={handleChange}></input>
-      <button onClick={handleSearch}>Sök</button>
-      <div>
-        <p>Bokningar</p>
-        <table>
-          <tr>
-            <th>Bokningsnummer</th>
-            <th>Förnamn</th>
-            <th>Efternamn</th>
-            <th>Email</th>
-            <th>Telefon</th>
-            <th>Antal gäster</th>
-            <th>Datum</th>
-            <th>Tid</th>
-            <th>Meddelande</th>
-          </tr>
-          {bookings.filteredBooking.map(b => (
-            <tr key={b._id}>
-              <td>{b._id}</td>
-              <td>{b.booker.firstname}</td>
-              <td>{b.booker.lastname}</td>
-              <td>{b.booker.email}</td>
-              <td>{b.booker.phone}</td>
-              <td>{b.guests}</td>
-              <td>{b.seatingTime}</td>
-              <td>{b.seatingDate}</td>
-              <td>{b.message}</td>
-            </tr>
-          ))}
-        </table>
-      </div>
         <BookingDispatchContext.Provider value={dispatch}>
           <CurrentBookingContext.Provider value={currentBooking}>
             <CurrentBookingDispatchContext.Provider
@@ -101,11 +70,32 @@ export const Admin = () => {
               <button onClick={handleSearch}>Sök</button>
               <div>
                 <p>Bokningar</p>
-                <ul>
+                <table>
+                  <tr>
+                    <th>Bokningsnummer</th>
+                    <th>Förnamn</th>
+                    <th>Efternamn</th>
+                    <th>Email</th>
+                    <th>Telefon</th>
+                    <th>Antal gäster</th>
+                    <th>Datum</th>
+                    <th>Tid</th>
+                    <th>Meddelande</th>
+                  </tr>
                   {bookings.filteredBooking.map((b) => (
-                    <li key={b._id}>{b.booker.firstname}</li>
+                    <tr key={b._id}>
+                      <td>{b._id}</td>
+                      <td>{b.booker.firstname}</td>
+                      <td>{b.booker.lastname}</td>
+                      <td>{b.booker.email}</td>
+                      <td>{b.booker.phone}</td>
+                      <td>{b.guests}</td>
+                      <td>{b.seatingTime}</td>
+                      <td>{b.seatingDate}</td>
+                      <td>{b.message}</td>
+                    </tr>
                   ))}
-                </ul>
+                </table>
               </div>
               <AdminBooking></AdminBooking>
             </CurrentBookingDispatchContext.Provider>
