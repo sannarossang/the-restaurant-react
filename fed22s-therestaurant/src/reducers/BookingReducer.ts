@@ -12,6 +12,10 @@ export enum ActionType {
   GOT_ALL_BOOKINGS,
   GOT_ONE_BOOKING,
   GOT_FILTERED_BOOKING,
+  SELECTED_AMOUNT_OF_GUESTS,
+  SELECTED_SEATING_DATE,
+  SELECTED_SEATING_TIME,
+  ADDED_CONTACT_DETAILS,
 }
 
 export const BookingReducer = (
@@ -51,6 +55,21 @@ export const BookingReducer = (
       console.log("filtered", filtered);
 
       return { ...bookings, filteredBooking: filtered };
+    }
+  }
+
+  return bookings;
+};
+
+export const NewBookingReducer = (
+  bookings: IBookingContext,
+  action: IAction
+): IBookingContext => {
+  switch (action.type) {
+    case ActionType.SELECTED_AMOUNT_OF_GUESTS: {
+      const booking = { ...bookings.newBooking };
+      booking.guests = +action.payload;
+      return { ...bookings, newBooking: booking };
     }
   }
 
