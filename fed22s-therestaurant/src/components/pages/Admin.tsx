@@ -12,7 +12,7 @@ export const Admin = () => {
 
   const [searchText, setSearchText] = useState("");
   const [bookings, dispatch] = useReducer(BookingReducer, bookingStates);
-  // // const [bookingsToView, setBookingsToView] = useState(bookings.allBookings);
+  const [bookingsToView, setBookingsToView] = useState(bookings.allBookings);
 
   useEffect(() => {
     const getData = async () => {
@@ -23,21 +23,18 @@ export const Admin = () => {
         type: ActionType.GOT_ALL_BOOKINGS,
         payload: JSON.stringify(dataFromApi),
       });
-
-      // setBookingsToView(dataFromApi);
+      setBookingsToView(dataFromApi);
     };
-
     if (bookings.allBookings.length === 0) getData();
   }, [bookings]);
-  console.log(bookings);
 
   const handleSearch = async () => {
     if (searchText == "") {
       alert("Inga bokningar hittades");
     } else {
-      // setBookingsToView(bookings.filteredBooking);
       dispatch({ type: ActionType.GOT_FILTERED_BOOKING, payload: searchText });
     }
+    setBookingsToView(bookings.filteredBooking);
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -63,16 +60,14 @@ export const Admin = () => {
           <button onClick={handleSearch}>Sök</button>
           <div>
             <p>Bokningar</p>
-            <ul>
-              {bookings.allBookings.map(b => (
-                <>
-                  <li key={b._id}>
-                    {b.booker.firstname}
-                    <button onClick={() => handleDelete(b._id)}>X</button>
-                  </li>
-                </>
-              ))}
-            </ul>
+            {bookingsToView.map(b => (
+              <>
+                <li key={b._id}>
+                  {b.booker.firstname}
+                  <button onClick={() => handleDelete(b._id)}>X</button>
+                </li>
+              </>
+            ))}
           </div>
         </BookingDispatchContext.Provider>
       </BookingContext.Provider>
