@@ -12,6 +12,7 @@ export const Admin = () => {
 
   const [searchText, setSearchText] = useState("");
   const [bookings, dispatch] = useReducer(BookingReducer, bookingStates);
+  // // const [bookingsToView, setBookingsToView] = useState(bookings.allBookings);
 
   useEffect(() => {
     const getData = async () => {
@@ -22,6 +23,8 @@ export const Admin = () => {
         type: ActionType.GOT_ALL_BOOKINGS,
         payload: JSON.stringify(dataFromApi),
       });
+
+      // setBookingsToView(dataFromApi);
     };
 
     if (bookings.allBookings.length === 0) getData();
@@ -32,10 +35,10 @@ export const Admin = () => {
     if (searchText == "") {
       alert("Inga bokningar hittades");
     } else {
+      // setBookingsToView(bookings.filteredBooking);
       dispatch({ type: ActionType.GOT_FILTERED_BOOKING, payload: searchText });
     }
   };
-  // if (bookings.allBookings.length === 0) handleSearch();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchText(e.target.value);
@@ -54,24 +57,25 @@ export const Admin = () => {
   return (
     <>
       <BookingContext.Provider value={bookings}>
-        <BookingDispatchContext.Provider value={dispatch}></BookingDispatchContext.Provider>
+        <BookingDispatchContext.Provider value={dispatch}>
+          <h1>Admin</h1>
+          <input type="text" onChange={handleChange}></input>
+          <button onClick={handleSearch}>Sök</button>
+          <div>
+            <p>Bokningar</p>
+            <ul>
+              {bookings.allBookings.map(b => (
+                <>
+                  <li key={b._id}>
+                    {b.booker.firstname}
+                    <button onClick={() => handleDelete(b._id)}>X</button>
+                  </li>
+                </>
+              ))}
+            </ul>
+          </div>
+        </BookingDispatchContext.Provider>
       </BookingContext.Provider>
-      <h1>Admin</h1>
-      <input type="text" onChange={handleChange}></input>
-      <button onClick={handleSearch}>Sök</button>
-      <div>
-        <p>Bokningar</p>
-        <ul>
-          {bookings.filteredBooking.map(b => (
-            <>
-              <li key={b._id}>
-                {b.booker.firstname}
-                <button onClick={() => handleDelete(b._id)}>X</button>
-              </li>
-            </>
-          ))}
-        </ul>
-      </div>
     </>
   );
 };
