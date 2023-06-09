@@ -1,10 +1,8 @@
+import { Action } from "@remix-run/router";
 import { ChangeEvent, useEffect, useReducer, useState } from "react";
-import {
-  BookingContext,
-  BookingDispatchContext,
-} from "../../contexts/BookingContext";
+import { BookingContext, BookingDispatchContext } from "../../contexts/BookingContext";
 import { ActionType, BookingReducer } from "../../reducers/BookingReducer";
-import { getBookings } from "../../services/BookingService";
+import { deleteBooking, getBookings } from "../../services/BookingService";
 
 export const Admin = () => {
   const bookingStates = {
@@ -18,6 +16,7 @@ export const Admin = () => {
   useEffect(() => {
     const getData = async () => {
       const dataFromApi = await getBookings();
+      console.log("useffect körs");
 
       dispatch({
         type: ActionType.GOT_ALL_BOOKINGS,
@@ -27,6 +26,7 @@ export const Admin = () => {
 
     if (bookings.allBookings.length === 0) getData();
   }, [bookings]);
+  console.log(bookings);
 
   const handleSearch = async () => {
     if (searchText == "") {
@@ -42,15 +42,19 @@ export const Admin = () => {
     console.log(e.target.value);
   };
 
+  const handleDelete = (id: string) => {
+    dispatch({ type: ActionType.DELETED, payload: id });
+    // deleteBooking("admin", id);
+    console.log(id, "is deleted");
+  };
+
   console.log(bookings.filteredBooking);
   console.log("Searchtext", searchText);
 
   return (
     <>
       <BookingContext.Provider value={bookings}>
-        <BookingDispatchContext.Provider
-          value={dispatch}
-        ></BookingDispatchContext.Provider>
+        <BookingDispatchContext.Provider value={dispatch}></BookingDispatchContext.Provider>
       </BookingContext.Provider>
       <h1>Admin</h1>
       <input type="text" onChange={handleChange}></input>
@@ -58,8 +62,13 @@ export const Admin = () => {
       <div>
         <p>Bokningar</p>
         <ul>
-          {bookings.filteredBooking.map((b) => (
-            <li key={b._id}>{b.booker.firstname}</li>
+          {bookings.filteredBooking.map(b => (
+            <>
+              <li key={b._id}>
+                {b.booker.firstname}
+                <button onClick={() => handleDelete(b._id)}>X</button>
+              </li>
+            </>
           ))}
         </ul>
       </div>
