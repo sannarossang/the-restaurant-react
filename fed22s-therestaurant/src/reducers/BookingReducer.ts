@@ -14,10 +14,7 @@ export enum ActionType {
   GOT_FILTERED_BOOKING,
 }
 
-export const BookingReducer = (
-  bookings: IBookingContext,
-  action: IAction
-): IBookingContext => {
+export const BookingReducer = (bookings: IBookingContext, action: IAction): IBookingContext => {
   switch (action.type) {
     case ActionType.CREATED: {
     }
@@ -26,6 +23,9 @@ export const BookingReducer = (
     }
 
     case ActionType.DELETED: {
+      const deleted = bookings.allBookings.filter(booking => booking._id !== action.payload);
+      const filtered = bookings.filteredBooking.filter(booking => booking._id !== action.payload);
+      return { ...bookings, allBookings: deleted, filteredBooking: filtered };
     }
 
     case ActionType.GOT_ALL_BOOKINGS: {
@@ -38,7 +38,7 @@ export const BookingReducer = (
 
     case ActionType.GOT_FILTERED_BOOKING: {
       const filtered = bookings.allBookings.filter(
-        (booking) =>
+        booking =>
           booking.booker.firstname.toLowerCase() === action.payload ||
           booking.booker.lastname.toLowerCase() === action.payload ||
           booking.booker.email.toLowerCase() === action.payload ||
