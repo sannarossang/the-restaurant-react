@@ -3,45 +3,22 @@ import {
   CurrentBookingContext,
   CurrentBookingDispatchContext,
 } from "../../contexts/CurrentBookingContext";
-import { AmountOfGuestsInput } from "../AmountOfGuestsInput";
-import { AvailableTimes } from "../AvailableTimes";
-import { CalendarView } from "../Calendar";
-import { GuestForm } from "../forms/GuestForm";
 import { CurrentBookingReducer } from "../../reducers/CurrentBookingReducer";
+import { BookingForm } from "../forms/BookingForm";
+import { defaultBookingValues } from "../../models/defaultBookingValues";
+import { BookingSummary } from "../BookingSummary";
 
 export const Booking = () => {
-  const [currentBooking, dispatch] = useReducer(CurrentBookingReducer, {
-    booker: {
-      firstname: "",
-      lastname: "",
-      email: "",
-      phone: "",
-    },
-
-    guests: 0,
-    message: "",
-    seatingTime: "",
-    seatingDate: "",
-    _id: "",
-  });
-
+  const [currentBooking, dispatch] = useReducer(
+    CurrentBookingReducer,
+    defaultBookingValues
+  );
   return (
     <>
       <CurrentBookingContext.Provider value={currentBooking}>
         <CurrentBookingDispatchContext.Provider value={dispatch}>
-          ¨<h1>Booking</h1>
-          {!currentBooking.guests ? <AmountOfGuestsInput /> : <></>}
-          {currentBooking.guests && !currentBooking.seatingDate ? (
-            <CalendarView />
-          ) : (
-            <></>
-          )}
-          {currentBooking.seatingDate && !currentBooking.seatingTime ? (
-            <AvailableTimes />
-          ) : (
-            <></>
-          )}
-          {currentBooking.seatingTime ? <GuestForm /> : <></>}
+          {!currentBooking.booker.email ? <BookingForm /> : <></>}
+          {currentBooking.booker.email ? <BookingSummary /> : <></>}
         </CurrentBookingDispatchContext.Provider>
       </CurrentBookingContext.Provider>
     </>

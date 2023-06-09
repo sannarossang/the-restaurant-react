@@ -1,3 +1,27 @@
+import { useContext } from "react";
+import { CurrentBookingContext } from "../../contexts/CurrentBookingContext";
+import { CalendarView } from "../Calendar";
+import { AmountOfGuestsInput } from "../AmountOfGuestsInput";
+import { AvailableTimes } from "../AvailableTimes";
+import { GuestForm } from "./GuestForm";
+
 export const BookingForm = () => {
-  return <></>;
+  const currentBooking = useContext(CurrentBookingContext);
+  return (
+    <>
+      ¨<h1>Booking</h1>
+      {!currentBooking.guests ? <AmountOfGuestsInput /> : <></>}
+      {currentBooking.guests && !currentBooking.seatingDate ? (
+        <CalendarView />
+      ) : (
+        <></>
+      )}
+      {currentBooking.seatingDate && !currentBooking.seatingTime ? (
+        <AvailableTimes />
+      ) : (
+        <></>
+      )}
+      {currentBooking.seatingTime ? <GuestForm /> : <></>}
+    </>
+  );
 };
