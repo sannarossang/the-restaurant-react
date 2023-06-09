@@ -25,6 +25,7 @@ export const BookingReducer = (bookings: IBookingContext, action: IAction): IBoo
     case ActionType.DELETED: {
       const deleted = bookings.allBookings.filter(booking => booking._id !== action.payload);
       const filtered = bookings.filteredBooking.filter(booking => booking._id !== action.payload);
+
       return { ...bookings, allBookings: deleted, filteredBooking: filtered };
     }
 
@@ -49,7 +50,6 @@ export const BookingReducer = (bookings: IBookingContext, action: IAction): IBoo
           booking._id === action.payload
       );
       console.log("filtered", filtered);
-
       return { ...bookings, filteredBooking: filtered };
     }
   }
