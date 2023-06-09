@@ -13,7 +13,7 @@ export const CurrentBookingContext = createContext<IBooking>({
   guests: 0,
   message: "",
   seatingTime: "",
-  seatingDate: new Date(),
+  seatingDate: "",
   _id: "",
 });
 
