@@ -5,6 +5,14 @@ import {
 } from "../../contexts/BookingContext";
 import { ActionType, BookingReducer } from "../../reducers/BookingReducer";
 import { getBookings } from "../../services/BookingService";
+import {
+  CurrentBookingContext,
+  CurrentBookingDispatchContext,
+} from "../../contexts/CurrentBookingContext";
+import { CurrentBookingReducer } from "../../reducers/CurrentBookingReducer";
+import { defaultBookingValues } from "../../models/defaultBookingValues";
+import { BookingForm } from "../forms/BookingForm";
+import { AdminBooking } from "../AdminBooking";
 
 export const Admin = () => {
   const bookingStates = {
@@ -14,6 +22,10 @@ export const Admin = () => {
 
   const [searchText, setSearchText] = useState("");
   const [bookings, dispatch] = useReducer(BookingReducer, bookingStates);
+  const [currentBooking, currentBookingDispatch] = useReducer(
+    CurrentBookingReducer,
+    defaultBookingValues
+  );
 
   useEffect(() => {
     const getData = async () => {
@@ -48,21 +60,27 @@ export const Admin = () => {
   return (
     <>
       <BookingContext.Provider value={bookings}>
-        <BookingDispatchContext.Provider
-          value={dispatch}
-        ></BookingDispatchContext.Provider>
+        <BookingDispatchContext.Provider value={dispatch}>
+          <CurrentBookingContext.Provider value={currentBooking}>
+            <CurrentBookingDispatchContext.Provider
+              value={currentBookingDispatch}
+            >
+              <h1>Admin</h1>
+              <input type="text" onChange={handleChange}></input>
+              <button onClick={handleSearch}>Sök</button>
+              <div>
+                <p>Bokningar</p>
+                <ul>
+                  {bookings.filteredBooking.map((b) => (
+                    <li key={b._id}>{b.booker.firstname}</li>
+                  ))}
+                </ul>
+              </div>
+              <AdminBooking></AdminBooking>
+            </CurrentBookingDispatchContext.Provider>
+          </CurrentBookingContext.Provider>
+        </BookingDispatchContext.Provider>
       </BookingContext.Provider>
-      <h1>Admin</h1>
-      <input type="text" onChange={handleChange}></input>
-      <button onClick={handleSearch}>Sök</button>
-      <div>
-        <p>Bokningar</p>
-        <ul>
-          {bookings.filteredBooking.map((b) => (
-            <li key={b._id}>{b.booker.firstname}</li>
-          ))}
-        </ul>
-      </div>
     </>
   );
 };
