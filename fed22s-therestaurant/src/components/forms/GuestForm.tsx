@@ -52,6 +52,7 @@ export const GuestForm = () => {
             type: ActionType.ADDED_CONTACT_DETAILS,
             payload: data,
           });
+          console.log("Guest form", currentbooking);
           createNewBooking("booker", currentbooking);
         })}
       >

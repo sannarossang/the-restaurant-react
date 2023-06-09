@@ -6,14 +6,11 @@ import {
   SeatingTimesWrapper,
   Wrapper,
 } from "./styled/AvailableTimes";
-import {
-  CurrentBookingContext,
-  CurrentBookingDispatchContext,
-} from "../contexts/CurrentBookingContext";
+import { CurrentBookingDispatchContext } from "../contexts/CurrentBookingContext";
 import { ActionType } from "../reducers/CurrentBookingReducer";
 
 export const AvailableTimes = () => {
-  const seatingTimes = ["18:00-20:45", "21:00-23:45"];
+  const seatingTimes = ["18:00", "21:00"];
   const dispatch = useContext(CurrentBookingDispatchContext);
 
   const handleSelectedTime = (seatingTime: string) => {
