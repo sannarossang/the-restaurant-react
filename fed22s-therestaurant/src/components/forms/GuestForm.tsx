@@ -52,7 +52,7 @@ export const GuestForm = () => {
             type: ActionType.ADDED_CONTACT_DETAILS,
             payload: data,
           });
-          createNewBooking("booker", currentbooking);
+          // createNewBooking("booker", currentbooking);
         })}
       >
         <GuestInput
