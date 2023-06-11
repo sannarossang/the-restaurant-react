@@ -40,16 +40,16 @@ export const BookingReducer = (bookings: IBookingContext, action: IAction): IBoo
     case ActionType.GOT_FILTERED_BOOKING: {
       const filtered = bookings.allBookings.filter(
         booking =>
-          booking.booker.firstname.toLowerCase() === action.payload ||
-          booking.booker.lastname.toLowerCase() === action.payload ||
-          booking.booker.email.toLowerCase() === action.payload ||
+          booking.booker.firstname.toLowerCase() === action.payload.toLocaleLowerCase() ||
+          booking.booker.lastname.toLowerCase() === action.payload.toLocaleLowerCase() ||
+          booking.booker.email.toLowerCase() === action.payload.toLocaleLowerCase() ||
           booking.booker.phone === action.payload ||
           booking.seatingDate === action.payload ||
           booking.seatingTime === action.payload ||
           booking.guests === +action.payload ||
           booking._id === action.payload
       );
-      console.log("filtered", filtered);
+      console.log("efter filtering..", filtered);
       return { ...bookings, filteredBooking: filtered };
     }
   }
