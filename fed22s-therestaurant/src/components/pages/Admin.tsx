@@ -53,7 +53,35 @@ export const Admin = () => {
           <h1>Admin</h1>
           <input type="text" onChange={handleChange}></input>
           <button onClick={handleSearch}>Sök</button>
-          <p>Bokningar</p>
+          <div>
+            <p>Bokningar</p>
+            <table>
+              <tr>
+                <th>Bokningsnummer</th>
+                <th>Förnamn</th>
+                <th>Efternamn</th>
+                <th>Email</th>
+                <th>Telefon</th>
+                <th>Antal gäster</th>
+                <th>Datum</th>
+                <th>Tid</th>
+                <th>Meddelande</th>
+              </tr>
+              {bookings.filteredBooking.map(b => (
+                <tr key={b._id}>
+                  <td>{b._id}</td>
+                  <td>{b.booker.firstname}</td>
+                  <td>{b.booker.lastname}</td>
+                  <td>{b.booker.email}</td>
+                  <td>{b.booker.phone}</td>
+                  <td>{b.guests}</td>
+                  <td>{b.seatingTime}</td>
+                  <td>{b.seatingDate}</td>
+                  <td>{b.message}</td>
+                </tr>
+              ))}
+            </table>
+          </div>
           {showAllBookings && (
             <div>
               {bookings.allBookings.map(b => (
