@@ -1,5 +1,6 @@
 import { Action } from "@remix-run/router";
 import { ChangeEvent, useEffect, useReducer, useState } from "react";
+import { boolean } from "zod";
 import { BookingContext, BookingDispatchContext } from "../../contexts/BookingContext";
 import { ActionType, BookingReducer } from "../../reducers/BookingReducer";
 import { deleteBooking, getBookings } from "../../services/BookingService";
@@ -12,44 +13,38 @@ export const Admin = () => {
 
   const [searchText, setSearchText] = useState("");
   const [bookings, dispatch] = useReducer(BookingReducer, bookingStates);
-  const [bookingsToView, setBookingsToView] = useState(bookings.allBookings);
+  const [showAllBookings, setshowAllBookings] = useState(true);
 
   useEffect(() => {
     const getData = async () => {
       const dataFromApi = await getBookings();
-      console.log("useffect körs");
 
       dispatch({
         type: ActionType.GOT_ALL_BOOKINGS,
         payload: JSON.stringify(dataFromApi),
       });
-      setBookingsToView(dataFromApi);
+      setshowAllBookings(true);
     };
     if (bookings.allBookings.length === 0) getData();
   }, [bookings]);
 
-  const handleSearch = async () => {
+  const handleSearch = () => {
     if (searchText == "") {
       alert("Inga bokningar hittades");
     } else {
       dispatch({ type: ActionType.GOT_FILTERED_BOOKING, payload: searchText });
     }
-    setBookingsToView(bookings.filteredBooking);
+    setshowAllBookings(false);
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchText(e.target.value);
-    console.log(e.target.value);
   };
 
   const handleDelete = (id: string) => {
     dispatch({ type: ActionType.DELETED, payload: id });
-    // deleteBooking("admin", id);
-    console.log(id, "is deleted");
+    deleteBooking("admin", id);
   };
-
-  console.log(bookings.filteredBooking);
-  console.log("Searchtext", searchText);
 
   return (
     <>
@@ -58,17 +53,31 @@ export const Admin = () => {
           <h1>Admin</h1>
           <input type="text" onChange={handleChange}></input>
           <button onClick={handleSearch}>Sök</button>
-          <div>
-            <p>Bokningar</p>
-            {bookingsToView.map(b => (
-              <>
-                <li key={b._id}>
-                  {b.booker.firstname}
-                  <button onClick={() => handleDelete(b._id)}>X</button>
-                </li>
-              </>
-            ))}
-          </div>
+          <p>Bokningar</p>
+          {showAllBookings && (
+            <div>
+              {bookings.allBookings.map(b => (
+                <>
+                  <li key={b._id}>
+                    {b.booker.firstname}
+                    <button onClick={() => handleDelete(b._id)}>X</button>
+                  </li>
+                </>
+              ))}
+            </div>
+          )}
+          {!showAllBookings && (
+            <div>
+              {bookings.filteredBooking.map(b => (
+                <>
+                  <li key={b._id}>
+                    {b.booker.firstname}
+                    <button onClick={() => handleDelete(b._id)}>X</button>
+                  </li>
+                </>
+              ))}
+            </div>
+          )}
         </BookingDispatchContext.Provider>
       </BookingContext.Provider>
     </>
