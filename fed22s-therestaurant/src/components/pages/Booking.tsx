@@ -3,17 +3,24 @@ import {
   CurrentBookingContext,
   CurrentBookingDispatchContext,
 } from "../../contexts/CurrentBookingContext";
-import { AmountOfGuestsInput } from "../AmountOfGuestsInput";
-import { AvailableTimes } from "../AvailableTimes";
-import { CalendarView } from "../Calendar";
-import { GuestForm } from "../forms/GuestForm";
 import { CurrentBookingReducer } from "../../reducers/CurrentBookingReducer";
 import { BookingForm } from "../forms/BookingForm";
+import { defaultBookingValues } from "../../models/defaultBookingValues";
+import { BookingSummary } from "../BookingSummary";
 
 export const Booking = () => {
+  const [currentBooking, dispatch] = useReducer(
+    CurrentBookingReducer,
+    defaultBookingValues
+  );
   return (
     <>
-      <BookingForm></BookingForm>
+      <CurrentBookingContext.Provider value={currentBooking}>
+        <CurrentBookingDispatchContext.Provider value={dispatch}>
+          {!currentBooking.booker.email ? <BookingForm /> : <></>}
+          {currentBooking.booker.email ? <BookingSummary /> : <></>}
+        </CurrentBookingDispatchContext.Provider>
+      </CurrentBookingContext.Provider>
     </>
   );
 };
