@@ -44,6 +44,12 @@ export const Admin = () => {
     if (bookings.allBookings.length === 0) getData();
   }, [bookings]);
 
+  useEffect(() => {
+    if (bookings.filteredBooking.length > 0) {
+      setBookingsToDisplay(bookings.filteredBooking);
+    }
+  });
+
   const handleSearch = () => {
     if (searchText == "") {
       alert("Inga bokningar hittades");
