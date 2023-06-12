@@ -1,4 +1,4 @@
-import { useReducer } from "react";
+import { useReducer, useState } from "react";
 import { CurrentBookingContext, CurrentBookingDispatchContext } from "../../contexts/CurrentBookingContext";
 import { CurrentBookingReducer } from "../../reducers/CurrentBookingReducer";
 import { BookingForm } from "../forms/BookingForm";
@@ -14,7 +14,6 @@ export const Booking = () => {
         <CurrentBookingDispatchContext.Provider value={dispatch}>
           {!currentBooking.booker.email ? <BookingForm /> : <></>}
           {currentBooking.booker.email ? <BookingSummary /> : <></>}
-          {/* {<BookingConfirmation />} */}
         </CurrentBookingDispatchContext.Provider>
       </CurrentBookingContext.Provider>
     </>
