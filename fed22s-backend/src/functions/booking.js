@@ -98,9 +98,10 @@ exports.getAllBookings = async (req, res) => {
     return res.status(400).json({ message: "Invalid seatingDate" });
   }
 
-  const reqQuery = new Date(req.query.seatingDate);
-  const reqQueryMinusOneDay = new Date().setDate(reqQuery.getDate() - 1);
-  const reqQueryPlusOneDay = new Date().setDate(reqQuery.getDate() + 1);
+  const reqQuery = req.query.seatingDate;
+  // const reqQueryMinusOneDay = new Date().setDate(reqQuery.getDate() - 1);
+  // const reqQueryPlusOneDay = new Date().setDate(reqQuery.getDate() + 1);
+  console.log("QUERY", reqQuery);
 
   if (!req.query.seatingDate) {
     const allBookings = await Booking.find();
@@ -113,7 +114,8 @@ exports.getAllBookings = async (req, res) => {
   } else {
     try {
       const bookingByDate = await Booking.find({
-        seatingDate: { $gte: reqQueryMinusOneDay, $lte: reqQueryPlusOneDay },
+        // seatingDate: { $gte: reqQueryMinusOneDay, $lte: reqQueryPlusOneDay },
+        seatingDate: reqQuery,
       });
       return res.json({
         data: bookingByDate,

@@ -12,10 +12,7 @@ export enum ActionType {
   ADDED_CONTACT_DETAILS,
 }
 
-export const CurrentBookingReducer = (
-  booking: IBooking,
-  action: IAction
-): IBooking => {
+export const CurrentBookingReducer = (booking: IBooking, action: IAction): IBooking => {
   switch (action.type) {
     case ActionType.SELECTED_AMOUNT_OF_GUESTS: {
       console.log("Reducer körs", action.payload);

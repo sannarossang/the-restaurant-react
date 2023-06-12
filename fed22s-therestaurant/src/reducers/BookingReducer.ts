@@ -18,10 +18,7 @@ export enum ActionType {
   ADDED_CONTACT_DETAILS,
 }
 
-export const BookingReducer = (
-  bookings: IBookingContext,
-  action: IAction
-): IBookingContext => {
+export const BookingReducer = (bookings: IBookingContext, action: IAction): IBookingContext => {
   switch (action.type) {
     case ActionType.CREATED: {
     }
@@ -30,6 +27,10 @@ export const BookingReducer = (
     }
 
     case ActionType.DELETED: {
+      const deleted = bookings.allBookings.filter(booking => booking._id !== action.payload);
+      const filtered = bookings.filteredBooking.filter(booking => booking._id !== action.payload);
+
+      return { ...bookings, allBookings: deleted, filteredBooking: filtered };
     }
 
     case ActionType.GOT_ALL_BOOKINGS: {
@@ -42,18 +43,17 @@ export const BookingReducer = (
 
     case ActionType.GOT_FILTERED_BOOKING: {
       const filtered = bookings.allBookings.filter(
-        (booking) =>
-          booking.booker.firstname.toLowerCase() === action.payload ||
-          booking.booker.lastname.toLowerCase() === action.payload ||
-          booking.booker.email.toLowerCase() === action.payload ||
+        booking =>
+          booking.booker.firstname.toLowerCase() === action.payload.toLocaleLowerCase() ||
+          booking.booker.lastname.toLowerCase() === action.payload.toLocaleLowerCase() ||
+          booking.booker.email.toLowerCase() === action.payload.toLocaleLowerCase() ||
           booking.booker.phone === action.payload ||
           booking.seatingDate === action.payload ||
           booking.seatingTime === action.payload ||
           booking.guests === +action.payload ||
           booking._id === action.payload
       );
-      console.log("filtered", filtered);
-
+      console.log("efter filtering..", filtered);
       return { ...bookings, filteredBooking: filtered };
     }
   }

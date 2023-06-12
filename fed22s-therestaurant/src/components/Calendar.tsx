@@ -1,10 +1,7 @@
 import { ChangeEvent, useContext, useEffect, useState } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
-import {
-  CurrentBookingContext,
-  CurrentBookingDispatchContext,
-} from "../contexts/CurrentBookingContext";
+import { CurrentBookingContext, CurrentBookingDispatchContext } from "../contexts/CurrentBookingContext";
 import { ActionType } from "../reducers/CurrentBookingReducer";
 
 type ValuePiece = Date | null;
@@ -18,17 +15,13 @@ export const CalendarView = () => {
     setDate(date);
     dispatch({
       type: ActionType.SELECTED_SEATING_DATE,
-      payload: date,
+      payload: date?.toLocaleString().substring(0, 10),
     });
   };
 
   return (
     <>
-      <Calendar
-        minDate={new Date()}
-        onChange={handleChange}
-        value={date}
-      ></Calendar>
+      <Calendar minDate={new Date()} onChange={handleChange} value={date}></Calendar>
     </>
   );
 };

@@ -17,8 +17,6 @@ export const CurrentBookingContext = createContext<IBooking>({
   _id: "",
 });
 
-export const CurrentBookingDispatchContext = createContext<Dispatch<IAction>>(
-  () => {
-    return;
-  }
-);
+export const CurrentBookingDispatchContext = createContext<Dispatch<IAction>>(() => {
+  return;
+});
