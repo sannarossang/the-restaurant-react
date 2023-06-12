@@ -1,6 +1,15 @@
 import { useContext, useEffect, useState } from "react";
-import { BookSeating, SeatingTime, SeatingTimeSlot, SeatingTimesWrapper, Wrapper } from "./styled/AvailableTimes";
-import { CurrentBookingContext, CurrentBookingDispatchContext } from "../contexts/CurrentBookingContext";
+import {
+  BookSeating,
+  SeatingTime,
+  SeatingTimeSlot,
+  SeatingTimesWrapper,
+  Wrapper,
+} from "./styled/AvailableTimes";
+import {
+  CurrentBookingContext,
+  CurrentBookingDispatchContext,
+} from "../contexts/CurrentBookingContext";
 import { ActionType } from "../reducers/CurrentBookingReducer";
 import { getBookings } from "../services/BookingService";
 
@@ -25,7 +34,7 @@ export const AvailableTimes = () => {
       const dataFromApi = await getBookings(currentBooking.seatingDate);
       console.log("DATA FROM API", dataFromApi);
 
-      dataFromApi.map(booking => {
+      dataFromApi.map((booking) => {
         if (booking.seatingTime === "18:00") {
           if (booking.guests <= 6) {
             firstSeating += 6;
@@ -36,7 +45,7 @@ export const AvailableTimes = () => {
         }
       });
 
-      dataFromApi.map(booking => {
+      dataFromApi.map((booking) => {
         if (booking.seatingTime === "21:00") {
           if (booking.guests <= 6) {
             secondSeating += 6;
@@ -55,9 +64,12 @@ export const AvailableTimes = () => {
       console.log("AVAILABLE SEATS EARLY", availableSeatsEarly);
       console.log("AVAILABLE SEATS LATE", availableSeatsEarly);
 
-      if (availableSeatsEarly === 0 || currentBooking.guests > availableSeatsEarly) {
+      if (
+        availableSeatsEarly === 0 ||
+        currentBooking.guests > availableSeatsEarly
+      ) {
         setSeatings({
-          ...seatings.map(seating => {
+          ...seatings.map((seating) => {
             if (seating.time === "18:00") {
               return { ...seating, isFullyBooked: true };
             } else {
@@ -69,10 +81,18 @@ export const AvailableTimes = () => {
         console.log("det är fullbokat i första sittningen!");
       }
 
-      console.log("Current booking guests:", currentBooking.guests, "Available Seats Late:", availableSeatsLate);
-      if (availableSeatsLate === 0 || currentBooking.guests > availableSeatsLate) {
+      console.log(
+        "Current booking guests:",
+        currentBooking.guests,
+        "Available Seats Late:",
+        availableSeatsLate
+      );
+      if (
+        availableSeatsLate === 0 ||
+        currentBooking.guests > availableSeatsLate
+      ) {
         setSeatings({
-          ...seatings.map(seating => {
+          ...seatings.map((seating) => {
             if (seating.time === "21:00") {
               return { ...seating, isFullyBooked: true };
             } else {
@@ -102,11 +122,15 @@ export const AvailableTimes = () => {
         <SeatingTimesWrapper>
           <SeatingTimeSlot onClick={() => handleSelectedTime(seatings[0].time)}>
             <SeatingTime>{seatings[0].time}</SeatingTime>
-            <BookSeating>{!seatings[0].isFullyBooked ? "Boka" : "Fullbokat"}</BookSeating>
+            <BookSeating>
+              {!seatings[0].isFullyBooked ? "Boka" : "Fullbokat"}
+            </BookSeating>
           </SeatingTimeSlot>
           <SeatingTimeSlot onClick={() => handleSelectedTime(seatings[1].time)}>
             <SeatingTime>{seatings[1].time}</SeatingTime>
-            <BookSeating>{!seatings[1].isFullyBooked ? "Boka" : "Fullbokat"}</BookSeating>
+            <BookSeating>
+              {!seatings[1].isFullyBooked ? "Boka" : "Fullbokat"}
+            </BookSeating>
           </SeatingTimeSlot>
         </SeatingTimesWrapper>
       </Wrapper>
