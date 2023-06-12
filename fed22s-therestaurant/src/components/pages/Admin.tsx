@@ -1,14 +1,19 @@
 import { Action } from "@remix-run/router";
 import { ChangeEvent, useEffect, useReducer, useState } from "react";
 import { boolean } from "zod";
-import { BookingContext, BookingDispatchContext } from "../../contexts/BookingContext";
+import {
+  BookingContext,
+  BookingDispatchContext,
+} from "../../contexts/BookingContext";
 import { ActionType, BookingReducer } from "../../reducers/BookingReducer";
 import { deleteBooking, getBookings } from "../../services/BookingService";
+import { defaultBookingValues } from "../../models/defaultBookingValues";
 
 export const Admin = () => {
   const bookingStates = {
     allBookings: [],
     filteredBooking: [],
+    newBooking: defaultBookingValues,
   };
 
   const [searchText, setSearchText] = useState("");
@@ -67,7 +72,7 @@ export const Admin = () => {
                 <th>Tid</th>
                 <th>Meddelande</th>
               </tr>
-              {bookings.filteredBooking.map(b => (
+              {bookings.filteredBooking.map((b) => (
                 <tr key={b._id}>
                   <td>{b._id}</td>
                   <td>{b.booker.firstname}</td>
@@ -84,7 +89,7 @@ export const Admin = () => {
           </div>
           {showAllBookings && (
             <div>
-              {bookings.allBookings.map(b => (
+              {bookings.allBookings.map((b) => (
                 <>
                   <li key={b._id}>
                     {b.booker.firstname}
@@ -96,7 +101,7 @@ export const Admin = () => {
           )}
           {!showAllBookings && (
             <div>
-              {bookings.filteredBooking.map(b => (
+              {bookings.filteredBooking.map((b) => (
                 <>
                   <li key={b._id}>
                     {b.booker.firstname}
