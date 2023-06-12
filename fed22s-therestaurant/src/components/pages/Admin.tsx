@@ -2,6 +2,7 @@ import { Action } from "@remix-run/router";
 import { ChangeEvent, useEffect, useReducer, useState } from "react";
 import { boolean } from "zod";
 import { BookingContext, BookingDispatchContext } from "../../contexts/BookingContext";
+import { defaultBookingValues } from "../../models/defaultBookingValues";
 import { ActionType, BookingReducer } from "../../reducers/BookingReducer";
 import { deleteBooking, getBookings } from "../../services/BookingService";
 
@@ -9,6 +10,7 @@ export const Admin = () => {
   const bookingStates = {
     allBookings: [],
     filteredBooking: [],
+    newBooking: defaultBookingValues,
   };
 
   const [searchText, setSearchText] = useState("");
