@@ -24,6 +24,7 @@ export const createNewBooking = async (route: string, booking: IBooking) => {
 export const getBookings = async (date?: string): Promise<IBooking[]> => {
   const url = date ? `${BASE_URL}/admin${`?seatingDate=${date}`}` : `${BASE_URL}/admin`;
   const response = await axios.get<IBookingsResponse>(url).then(response => response.data.data);
+  console.log("GET BOOKINGS", url);
   return response;
 };
 
