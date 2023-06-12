@@ -8,6 +8,7 @@ import {
 import { ActionType, BookingReducer } from "../../reducers/BookingReducer";
 import { deleteBooking, getBookings } from "../../services/BookingService";
 import { defaultBookingValues } from "../../models/defaultBookingValues";
+import { CreateBookingBtn } from "../styled/Admin/Admin";
 
 export const Admin = () => {
   const bookingStates = {
@@ -58,6 +59,9 @@ export const Admin = () => {
           <h1>Admin</h1>
           <input type="text" onChange={handleChange}></input>
           <button onClick={handleSearch}>Sök</button>
+          <div>
+            <CreateBookingBtn>Skapa ny bokning</CreateBookingBtn>
+          </div>
           <div>
             <p>Bokningar</p>
             <table>
