@@ -1,17 +1,7 @@
 import { Action } from "@remix-run/router";
-import {
-  ChangeEvent,
-  useContext,
-  useEffect,
-  useReducer,
-  useState,
-} from "react";
+import { ChangeEvent, useContext, useEffect, useReducer, useState } from "react";
 import { boolean } from "zod";
-import {
-  BookingContext,
-  BookingDispatchContext,
-  IBookingContext,
-} from "../../contexts/BookingContext";
+import { BookingContext, BookingDispatchContext } from "../../contexts/BookingContext";
 import { ActionType, BookingReducer } from "../../reducers/BookingReducer";
 import { deleteBooking, getBookings } from "../../services/BookingService";
 import { defaultBookingValues } from "../../models/defaultBookingValues";

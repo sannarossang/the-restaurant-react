@@ -4,6 +4,7 @@ import { CurrentBookingReducer } from "../../reducers/CurrentBookingReducer";
 import { BookingForm } from "../forms/BookingForm";
 import { defaultBookingValues } from "../../models/defaultBookingValues";
 import { BookingSummary } from "../BookingSummary";
+import { BookingConfirmation } from "../BookingConfirmation";
 
 export const Booking = () => {
   const [currentBooking, dispatch] = useReducer(CurrentBookingReducer, defaultBookingValues);
