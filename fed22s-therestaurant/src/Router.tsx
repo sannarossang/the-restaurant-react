@@ -5,6 +5,7 @@ import { Booking } from "./components/pages/Booking";
 import { Admin } from "./components/pages/Admin";
 import { Contact } from "./components/pages/Contact";
 import { Reservation } from "./components/pages/Reservation";
+import { BookingConfirmation } from "./components/BookingConfirmation";
 
 export const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ export const router = createBrowserRouter([
       {
         path: "/reservation",
         element: <Reservation></Reservation>,
+      },
+      {
+        path: "/confirmation",
+        element: <BookingConfirmation></BookingConfirmation>,
       },
     ],
   },
