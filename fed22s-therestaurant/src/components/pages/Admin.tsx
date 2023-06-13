@@ -17,7 +17,6 @@ import { deleteBooking, getBookings } from "../../services/BookingService";
 import { defaultBookingValues } from "../../models/defaultBookingValues";
 import { CreateBookingBtn } from "../styled/Admin/Admin";
 import { BookingsTable } from "../BookingsTable";
-import { IBooking } from "../../models/IBooking";
 
 export const Admin = () => {
   const bookingStates: IBookingContext = {
@@ -28,7 +27,6 @@ export const Admin = () => {
 
   const [searchText, setSearchText] = useState("");
   const [bookings, dispatch] = useReducer(BookingReducer, bookingStates);
-  const [bookingsToDisplay, setBookingsToDisplay] = useState<IBooking[]>([]);
 
   useEffect(() => {
     const getData = async () => {
@@ -38,24 +36,15 @@ export const Admin = () => {
         type: ActionType.GOT_ALL_BOOKINGS,
         payload: JSON.stringify(dataFromApi),
       });
-
-      setBookingsToDisplay([...dataFromApi]);
     };
     if (bookings.allBookings.length === 0) getData();
   }, [bookings]);
-
-  useEffect(() => {
-    if (bookings.filteredBooking.length > 0) {
-      setBookingsToDisplay(bookings.filteredBooking);
-    }
-  });
 
   const handleSearch = () => {
     if (searchText == "") {
       alert("Inga bokningar hittades");
     } else {
       dispatch({ type: ActionType.GOT_FILTERED_BOOKING, payload: searchText });
-      setBookingsToDisplay([...bookings.filteredBooking]);
     }
   };
 
@@ -74,7 +63,7 @@ export const Admin = () => {
             <CreateBookingBtn>Skapa ny bokning</CreateBookingBtn>
           </div>
 
-          <BookingsTable bookings={bookingsToDisplay} />
+          <BookingsTable />
         </BookingDispatchContext.Provider>
       </BookingContext.Provider>
     </>

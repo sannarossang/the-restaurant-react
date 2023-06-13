@@ -41,7 +41,11 @@ export const BookingReducer = (
     }
 
     case ActionType.GOT_ALL_BOOKINGS: {
-      return { ...bookings, allBookings: JSON.parse(action.payload) };
+      return {
+        ...bookings,
+        allBookings: JSON.parse(action.payload),
+        filteredBooking: JSON.parse(action.payload),
+      };
     }
 
     case ActionType.GOT_ONE_BOOKING: {
