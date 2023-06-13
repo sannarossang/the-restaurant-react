@@ -18,7 +18,10 @@ export enum ActionType {
   ADDED_CONTACT_DETAILS,
 }
 
-export const BookingReducer = (bookings: IBookingContext, action: IAction): IBookingContext => {
+export const BookingReducer = (
+  bookings: IBookingContext,
+  action: IAction
+): IBookingContext => {
   switch (action.type) {
     case ActionType.CREATED: {
     }
@@ -27,14 +30,22 @@ export const BookingReducer = (bookings: IBookingContext, action: IAction): IBoo
     }
 
     case ActionType.DELETED: {
-      const deleted = bookings.allBookings.filter(booking => booking._id !== action.payload);
-      const filtered = bookings.filteredBooking.filter(booking => booking._id !== action.payload);
+      const deleted = bookings.allBookings.filter(
+        (booking) => booking._id !== action.payload
+      );
+      const filtered = bookings.filteredBooking.filter(
+        (booking) => booking._id !== action.payload
+      );
 
       return { ...bookings, allBookings: deleted, filteredBooking: filtered };
     }
 
     case ActionType.GOT_ALL_BOOKINGS: {
-      return { ...bookings, allBookings: JSON.parse(action.payload) };
+      return {
+        ...bookings,
+        allBookings: JSON.parse(action.payload),
+        filteredBooking: JSON.parse(action.payload),
+      };
     }
 
     case ActionType.GOT_ONE_BOOKING: {
@@ -43,10 +54,12 @@ export const BookingReducer = (bookings: IBookingContext, action: IAction): IBoo
 
     case ActionType.GOT_FILTERED_BOOKING: {
       const filtered = bookings.allBookings.filter(
-        booking =>
-          booking.booker.firstname.toLowerCase() === action.payload.toLocaleLowerCase() ||
-          booking.booker.lastname.toLowerCase() === action.payload.toLocaleLowerCase() ||
-          booking.booker.email.toLowerCase() === action.payload.toLocaleLowerCase() ||
+        (booking) =>
+          booking.booker.firstname.toLowerCase() ===
+            action.payload.toLowerCase() ||
+          booking.booker.lastname.toLowerCase() ===
+            action.payload.toLowerCase() ||
+          booking.booker.email.toLowerCase() === action.payload.toLowerCase() ||
           booking.booker.phone === action.payload ||
           booking.seatingDate === action.payload ||
           booking.seatingTime === action.payload ||
