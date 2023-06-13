@@ -15,15 +15,12 @@ import { getBookings } from "../services/BookingService";
 import { IBooking } from "../models/IBooking";
 
 export const AvailableTimes = () => {
-  const [seatings, setSeatings] = useState([
-    { time: "18:00", isFullyBooked: false },
-    { time: "21:00", isFullyBooked: false },
-  ]);
-
+  const seatings = ["18:00", "21:00"];
   const [bookings, setBookings] = useState<IBooking[]>([]);
 
   const currentBooking = useContext(CurrentBookingContext);
   const dispatch = useContext(CurrentBookingDispatchContext);
+
   const totalAmountOfGuest = 90;
   let firstSeating = 0;
   let secondSeating = 0;
@@ -66,53 +63,27 @@ export const AvailableTimes = () => {
   let availableSeatsEarly = totalAmountOfGuest - firstSeating;
   let availableSeatsLate = totalAmountOfGuest - secondSeating;
 
-  console.log(availableSeatsEarly, currentBooking.guests);
-  console.log(availableSeatsLate, currentBooking.guests);
-
-  // if (
-  //   availableSeatsEarly === 0 ||
-  //   currentBooking.guests > availableSeatsEarly
-  // ) {
-  //   setSeatings({
-  //     ...seatings.map((seating) => {
-  //       if (seating.time === "18:00") {
-  //         return { ...seating, isFullyBooked: true };
-  //       } else {
-  //         return seating;
-  //       }
-  //     }),
-  //   });
-  // }
-  // if (availableSeatsLate === 0 || currentBooking.guests > availableSeatsLate) {
-  //   setSeatings({
-  //     ...seatings.map((seating) => {
-  //       if (seating.time === "21:00") {
-  //         return { ...seating, isFullyBooked: true };
-  //       } else {
-  //         return seating;
-  //       }
-  //     }),
-  //   });
-  // }
+  console.log("early:", availableSeatsEarly);
+  console.log("late:", availableSeatsLate);
 
   return (
     <>
       <Wrapper>
         <SeatingTimesWrapper>
-          <SeatingTimeSlot onClick={() => handleSelectedTime(seatings[0].time)}>
-            <SeatingTime>{seatings[0].time}</SeatingTime>
+          <SeatingTimeSlot onClick={() => handleSelectedTime(seatings[0])}>
+            <SeatingTime>{seatings[0]}</SeatingTime>
             <BookSeating>
               {availableSeatsEarly === 0 ||
-              currentBooking.guests >= availableSeatsEarly
+              currentBooking.guests > availableSeatsEarly
                 ? "Fullbokat"
                 : "Boka"}
             </BookSeating>
           </SeatingTimeSlot>
-          <SeatingTimeSlot onClick={() => handleSelectedTime(seatings[1].time)}>
-            <SeatingTime>{seatings[1].time}</SeatingTime>
+          <SeatingTimeSlot onClick={() => handleSelectedTime(seatings[1])}>
+            <SeatingTime>{seatings[1]}</SeatingTime>
             <BookSeating>
               {availableSeatsLate === 0 ||
-              currentBooking.guests >= availableSeatsLate
+              currentBooking.guests > availableSeatsLate
                 ? "Fullbokat"
                 : "Boka"}
             </BookSeating>
