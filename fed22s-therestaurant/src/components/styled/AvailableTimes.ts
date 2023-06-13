@@ -10,14 +10,22 @@ export const SeatingTimesWrapper = styled.div`
   width: 90%;
 `;
 
-export const SeatingTimeSlot = styled.div`
+export const SeatingTimeSlot = styled.button`
+  width: 80%;
   height: 30px;
-  background-color: lightblue;
+  border: none;
+
+  background-color: rgba(39, 159, 245, 0.85);
   margin: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
+
+  &:disabled {
+    cursor: default;
+    background-color: lightgrey;
+  }
 `;
 
 export const SeatingTime = styled.span`

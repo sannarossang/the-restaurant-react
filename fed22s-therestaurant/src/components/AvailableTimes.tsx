@@ -63,20 +63,25 @@ export const AvailableTimes = () => {
   let availableSeatsEarly = totalAmountOfGuest - firstSeating;
   let availableSeatsLate = totalAmountOfGuest - secondSeating;
 
-  console.log("early:", availableSeatsEarly);
-  console.log("late:", availableSeatsLate);
+  const isFullyBooked = (availableSeats: number) => {
+    if (availableSeats === 0 || currentBooking.guests > availableSeats) {
+      return true;
+    } else {
+      return false;
+    }
+  };
 
   return (
     <>
       <Wrapper>
         <SeatingTimesWrapper>
-          <SeatingTimeSlot onClick={() => handleSelectedTime(seatings[0])}>
+          <SeatingTimeSlot
+            disabled={isFullyBooked(availableSeatsEarly)}
+            onClick={() => handleSelectedTime(seatings[0])}
+          >
             <SeatingTime>{seatings[0]}</SeatingTime>
             <BookSeating>
-              {availableSeatsEarly === 0 ||
-              currentBooking.guests > availableSeatsEarly
-                ? "Fullbokat"
-                : "Boka"}
+              {isFullyBooked(availableSeatsEarly) ? "Fullbokat" : "Boka"}
             </BookSeating>
           </SeatingTimeSlot>
           <SeatingTimeSlot onClick={() => handleSelectedTime(seatings[1])}>
