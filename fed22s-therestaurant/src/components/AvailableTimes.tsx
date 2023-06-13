@@ -12,15 +12,15 @@ import {
 } from "../contexts/CurrentBookingContext";
 import { ActionType } from "../reducers/CurrentBookingReducer";
 import { getBookings } from "../services/BookingService";
+import { IBooking } from "../models/IBooking";
 
 export const AvailableTimes = () => {
-  const [seatings, setSeatings] = useState([
-    { time: "18:00", isFullyBooked: false },
-    { time: "21:00", isFullyBooked: false },
-  ]);
+  const seatings = ["18:00", "21:00"];
+  const [bookings, setBookings] = useState<IBooking[]>([]);
 
   const currentBooking = useContext(CurrentBookingContext);
   const dispatch = useContext(CurrentBookingDispatchContext);
+
   const totalAmountOfGuest = 90;
   let firstSeating = 0;
   let secondSeating = 0;
@@ -32,96 +32,60 @@ export const AvailableTimes = () => {
   useEffect(() => {
     const getData = async () => {
       const dataFromApi = await getBookings(currentBooking.seatingDate);
-
-      dataFromApi.map((booking) => {
-        if (booking.seatingTime === "18:00") {
-          if (booking.guests <= 6) {
-            firstSeating += 6;
-          }
-          if (booking.guests > 6 && booking.guests <= 12) {
-            firstSeating += 12;
-          }
-        }
-      });
-
-      dataFromApi.map((booking) => {
-        if (booking.seatingTime === "21:00") {
-          if (booking.guests <= 6) {
-            secondSeating += 6;
-          }
-          if (booking.guests > 6 && booking.guests <= 12) {
-            secondSeating += 12;
-          }
-        }
-      });
-
-      let availableSeatsEarly = totalAmountOfGuest - firstSeating;
-      let availableSeatsLate = totalAmountOfGuest - secondSeating;
-
-      console.log("FIRST SEATING", firstSeating);
-      console.log("SECOND SEATING", secondSeating);
-      console.log("AVAILABLE SEATS EARLY", availableSeatsEarly);
-      console.log("AVAILABLE SEATS LATE", availableSeatsEarly);
-
-      if (
-        availableSeatsEarly === 0 ||
-        currentBooking.guests > availableSeatsEarly
-      ) {
-        setSeatings({
-          ...seatings.map((seating) => {
-            if (seating.time === "18:00") {
-              return { ...seating, isFullyBooked: true };
-            } else {
-              return seating;
-            }
-          }),
-        });
-
-        console.log("det är fullbokat i första sittningen!");
-      }
-      if (
-        availableSeatsLate === 0 ||
-        currentBooking.guests > availableSeatsLate
-      ) {
-        setSeatings({
-          ...seatings.map((seating) => {
-            if (seating.time === "21:00") {
-              return { ...seating, isFullyBooked: true };
-            } else {
-              return seating;
-            }
-          }),
-        });
-
-        console.log("det är fullbokat i andra sittningen!");
-      }
-      console.log(
-        "Current booking guests igen:",
-        currentBooking.guests,
-        "Available Seats Late igen:",
-        availableSeatsLate
-      );
+      setBookings(dataFromApi);
     };
 
-    getData();
+    if (bookings.length === 0) getData();
   }, []);
 
-  console.log("SEATINGS AFTER", seatings);
+  bookings.map((booking) => {
+    if (booking.seatingTime === "18:00") {
+      if (booking.guests <= 6) {
+        firstSeating += 6;
+      }
+      if (booking.guests > 6 && booking.guests <= 12) {
+        firstSeating += 12;
+      }
+    }
+  });
+
+  bookings.map((booking) => {
+    if (booking.seatingTime === "21:00") {
+      if (booking.guests <= 6) {
+        secondSeating += 6;
+      }
+      if (booking.guests > 6 && booking.guests <= 12) {
+        secondSeating += 12;
+      }
+    }
+  });
+
+  let availableSeatsEarly = totalAmountOfGuest - firstSeating;
+  let availableSeatsLate = totalAmountOfGuest - secondSeating;
+
+  console.log("early:", availableSeatsEarly);
+  console.log("late:", availableSeatsLate);
 
   return (
     <>
       <Wrapper>
         <SeatingTimesWrapper>
-          <SeatingTimeSlot onClick={() => handleSelectedTime(seatings[0].time)}>
-            <SeatingTime>{seatings[0].time}</SeatingTime>
+          <SeatingTimeSlot onClick={() => handleSelectedTime(seatings[0])}>
+            <SeatingTime>{seatings[0]}</SeatingTime>
             <BookSeating>
-              {!seatings[0].isFullyBooked ? "Boka" : "Fullbokat"}
+              {availableSeatsEarly === 0 ||
+              currentBooking.guests > availableSeatsEarly
+                ? "Fullbokat"
+                : "Boka"}
             </BookSeating>
           </SeatingTimeSlot>
-          <SeatingTimeSlot onClick={() => handleSelectedTime(seatings[1].time)}>
-            <SeatingTime>{seatings[1].time}</SeatingTime>
+          <SeatingTimeSlot onClick={() => handleSelectedTime(seatings[1])}>
+            <SeatingTime>{seatings[1]}</SeatingTime>
             <BookSeating>
-              {!seatings[1].isFullyBooked ? "Boka" : "Fullbokat"}
+              {availableSeatsLate === 0 ||
+              currentBooking.guests > availableSeatsLate
+                ? "Fullbokat"
+                : "Boka"}
             </BookSeating>
           </SeatingTimeSlot>
         </SeatingTimesWrapper>
