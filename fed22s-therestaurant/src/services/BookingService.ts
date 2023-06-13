@@ -29,7 +29,7 @@ export const getBookings = async (date?: string): Promise<IBooking[]> => {
 };
 
 export const getBooking = async (route: string, id: string): Promise<IBooking> => {
-  const response = await axios.get<IBooking>(`/${route}/${id}`);
+  const response = await axios.get<IBooking>(`${BASE_URL}/${route}/${id}`);
   return response.data;
 };
 
