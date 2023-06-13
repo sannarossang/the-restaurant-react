@@ -22,18 +22,27 @@ export const createNewBooking = async (route: string, booking: IBooking) => {
 };
 
 export const getBookings = async (date?: string): Promise<IBooking[]> => {
-  const url = date ? `${BASE_URL}/admin${`?seatingDate=${date}`}` : `${BASE_URL}/admin`;
-  const response = await axios.get<IBookingsResponse>(url).then(response => response.data.data);
-  console.log("GET BOOKINGS", url);
+  const url = date
+    ? `${BASE_URL}/admin${`?seatingDate=${date}`}`
+    : `${BASE_URL}/admin`;
+  const response = await axios
+    .get<IBookingsResponse>(url)
+    .then((response) => response.data.data);
   return response;
 };
 
-export const getBooking = async (route: string, id: string): Promise<IBooking> => {
+export const getBooking = async (
+  route: string,
+  id: string
+): Promise<IBooking> => {
   const response = await axios.get<IBooking>(`/${route}/${id}`);
   return response.data;
 };
 
-export const updateBooking = async (id: string, booking: IBooking): Promise<IBooking> => {
+export const updateBooking = async (
+  id: string,
+  booking: IBooking
+): Promise<IBooking> => {
   const response = await axios.put(`${BASE_URL}/admin/${id}`, {
     booker: {
       firstname: booking.booker.firstname,

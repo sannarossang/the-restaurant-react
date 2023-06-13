@@ -32,7 +32,6 @@ export const AvailableTimes = () => {
   useEffect(() => {
     const getData = async () => {
       const dataFromApi = await getBookings(currentBooking.seatingDate);
-      console.log("DATA FROM API", dataFromApi);
 
       dataFromApi.map((booking) => {
         if (booking.seatingTime === "18:00") {
@@ -80,13 +79,6 @@ export const AvailableTimes = () => {
 
         console.log("det är fullbokat i första sittningen!");
       }
-
-      console.log(
-        "Current booking guests:",
-        currentBooking.guests,
-        "Available Seats Late:",
-        availableSeatsLate
-      );
       if (
         availableSeatsLate === 0 ||
         currentBooking.guests > availableSeatsLate
