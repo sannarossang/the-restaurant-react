@@ -57,21 +57,21 @@ export const AmountOfGuestsInput = () => {
 
   return (
     <>
-      <AmountInputWrapper>
-        <AmountForm>
-          {/* <AmountSmallHeading>VÄLJ ANTAL PERSONER</AmountSmallHeading> */}
-          <Select
-            value={guestAmountInputOptions.find(
-              ({ value }) => value === field.value
-            )}
-            onChange={handleSelectChange}
-            options={guestAmountInputOptions}
-            placeholder="VÄLJ ANTAL PERSONER"
-            defaultMenuIsOpen={true}
-          />
-          <p>{errors.amount?.message}</p>
-        </AmountForm>
-      </AmountInputWrapper>
+      {/* <AmountInputWrapper> */}
+      <AmountForm>
+        {/* <AmountSmallHeading>VÄLJ ANTAL PERSONER</AmountSmallHeading> */}
+        <Select
+          value={guestAmountInputOptions.find(
+            ({ value }) => value === field.value
+          )}
+          onChange={handleSelectChange}
+          options={guestAmountInputOptions}
+          placeholder="VÄLJ ANTAL PERSONER"
+          defaultMenuIsOpen={true}
+        />
+        <p>{errors.amount?.message}</p>
+      </AmountForm>
+      {/* </AmountInputWrapper> */}
     </>
   );
 };
