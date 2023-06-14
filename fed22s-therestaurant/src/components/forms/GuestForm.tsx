@@ -1,16 +1,9 @@
 import { useForm } from "react-hook-form";
-import {
-  GuestInput,
-  MessageInput,
-  StyledGuestForm,
-} from "../styled/Forms/GuestForm";
+import { GuestFormWrapper, GuestInput, InputWrapper, MessageInput, StyledGuestForm } from "../styled/Forms/GuestForm";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useContext } from "react";
-import {
-  CurrentBookingContext,
-  CurrentBookingDispatchContext,
-} from "../../contexts/CurrentBookingContext";
+import { CurrentBookingContext, CurrentBookingDispatchContext } from "../../contexts/CurrentBookingContext";
 import { ActionType } from "../../reducers/CurrentBookingReducer";
 import { IBooking } from "../../models/IBooking";
 import { createNewBooking } from "../../services/BookingService";
@@ -47,7 +40,7 @@ export const GuestForm = () => {
   return (
     <>
       <StyledGuestForm
-        onSubmit={handleSubmit((data) => {
+        onSubmit={handleSubmit(data => {
           dispatch({
             type: ActionType.ADDED_CONTACT_DETAILS,
             payload: data,
@@ -55,38 +48,27 @@ export const GuestForm = () => {
           // createNewBooking("booker", currentbooking);
         })}
       >
-        <GuestInput
-          type="text"
-          {...register("firstname")}
-          placeholder="Förnamn"
-        ></GuestInput>
-        <p>{errors.firstname?.message}</p>
+        <p>Kontaktuppgifter</p>
 
-        <GuestInput
-          type="text"
-          {...register("lastname")}
-          placeholder="Efternamn"
-        ></GuestInput>
-        <p>{errors.lastname?.message}</p>
-        <GuestInput
-          type="text"
-          {...register("phone")}
-          placeholder="070 XXX XX XX"
-        ></GuestInput>
-        <p>{errors.phone?.message}</p>
-        <GuestInput
-          type="email"
-          {...register("email")}
-          placeholder="emailadress@gmail.com"
-        ></GuestInput>
-        <p>{errors.email?.message}</p>
+        <GuestFormWrapper>
+          <InputWrapper>
+            <GuestInput type="text" {...register("firstname")} placeholder="Förnamn"></GuestInput>
+            <p>{errors.firstname?.message}</p>
+            <GuestInput type="text" {...register("lastname")} placeholder="Efternamn"></GuestInput>
+            <p>{errors.lastname?.message}</p>
+            <GuestInput type="text" {...register("phone")} placeholder="070 XXX XX XX"></GuestInput>
+            <p>{errors.phone?.message}</p>
+            <GuestInput type="email" {...register("email")} placeholder="emailadress@gmail.com"></GuestInput>
+            <p>{errors.email?.message}</p>
 
-        <MessageInput
-          type="text"
-          {...register("message")}
-          placeholder="Eventuella allergier eller andra önskemål"
-        ></MessageInput>
-        <button>Nästa</button>
+            <MessageInput
+              type="text"
+              {...register("message")}
+              placeholder="Eventuella allergier eller andra önskemål"
+            ></MessageInput>
+            <button>Nästa</button>
+          </InputWrapper>
+        </GuestFormWrapper>
       </StyledGuestForm>
     </>
   );
