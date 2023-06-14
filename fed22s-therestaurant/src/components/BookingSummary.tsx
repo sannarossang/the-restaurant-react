@@ -1,5 +1,8 @@
 import { useContext, useState } from "react";
-import { CurrentBookingContext } from "../contexts/CurrentBookingContext";
+import {
+  CurrentBookingContext,
+  CurrentBookingDispatchContext,
+} from "../contexts/CurrentBookingContext";
 import { createNewBooking } from "../services/BookingService";
 import {
   ConfirmBookingButton,
@@ -10,9 +13,11 @@ import {
   TermsAndConditions,
 } from "./styled/BookingSummary";
 import { BookingConfirmation } from "./BookingConfirmation";
+import { ActionType } from "../reducers/CurrentBookingReducer";
 
 export const BookingSummary = () => {
   const booking = useContext(CurrentBookingContext);
+  const dispatch = useContext(CurrentBookingDispatchContext);
   const [checked, setChecked] = useState(false);
 
   const handleChange = () => {
@@ -22,9 +27,10 @@ export const BookingSummary = () => {
   console.log(checked);
   const [showConfirmation, setShowConfirmation] = useState(false);
 
-  const handleBooking = () => {
-    createNewBooking("booker", booking);
+  const handleBooking = async () => {
+    const response = await createNewBooking("booker", booking);
     setShowConfirmation(true);
+    dispatch({ type: ActionType.GOT_BOOKING_ID, payload: response.data._id });
   };
 
   return (

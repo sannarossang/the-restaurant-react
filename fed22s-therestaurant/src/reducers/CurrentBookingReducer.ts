@@ -10,10 +10,14 @@ export enum ActionType {
   SELECTED_SEATING_DATE,
   SELECTED_SEATING_TIME,
   ADDED_CONTACT_DETAILS,
+  GOT_BOOKING_ID,
   DELETED,
 }
 
-export const CurrentBookingReducer = (booking: IBooking, action: IAction): IBooking => {
+export const CurrentBookingReducer = (
+  booking: IBooking,
+  action: IAction
+): IBooking => {
   switch (action.type) {
     case ActionType.SELECTED_AMOUNT_OF_GUESTS: {
       return { ...booking, guests: action.payload };
@@ -38,6 +42,10 @@ export const CurrentBookingReducer = (booking: IBooking, action: IAction): IBook
         },
         message: action.payload.message,
       };
+    }
+
+    case ActionType.GOT_BOOKING_ID: {
+      return { ...booking, _id: action.payload };
     }
   }
 

@@ -7,6 +7,7 @@ export const BookingConfirmation = () => {
   return (
     <>
       <h1>Hej {booking.booker.firstname}! Din bokning har genomförts.</h1>
+      <p>Din bokningsreferens: {booking._id}</p>
       <p>En bokningsbekräftelse har skickats till {booking.booker.email}</p>
     </>
   );
