@@ -9,6 +9,7 @@ import {
   InfoText,
   TermsAndConditions,
 } from "./styled/BookingSummary";
+import { BookingConfirmation } from "./BookingConfirmation";
 
 export const BookingSummary = () => {
   const booking = useContext(CurrentBookingContext);
@@ -19,9 +20,11 @@ export const BookingSummary = () => {
   };
 
   console.log(checked);
+  const [showConfirmation, setShowConfirmation] = useState(false);
 
   const handleBooking = () => {
     createNewBooking("booker", booking);
+    setShowConfirmation(true);
   };
 
   return (
@@ -52,6 +55,7 @@ export const BookingSummary = () => {
         <ConfirmBookingButton disabled={!checked} onClick={handleBooking}>
           BOKA!!!!
         </ConfirmBookingButton>
+        {showConfirmation && <BookingConfirmation />}
       </div>
     </>
   );

@@ -16,6 +16,7 @@ export const ContactForm = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState,
     formState: { dirtyFields, touchedFields, isValid },
   } = useForm<IContactFormInput>({
@@ -30,64 +31,65 @@ export const ContactForm = () => {
   });
 
   const { errors } = formState;
-  const onSubmit: SubmitHandler<IContactFormInput> = data => console.log(data);
+  const onSubmit: SubmitHandler<IContactFormInput> = data => {
+    console.log(data);
+    reset();
+  };
 
   return (
     <>
-      <ContactFormWrapper>
+      <ContactFormWrapper onSubmit={handleSubmit(onSubmit)}>
         <ContactTitle>Contact us</ContactTitle>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <div>
-            <input
-              {...register("firstname", {
-                pattern: /^[a-zA-Z]+$/, //funkar inte
-              })}
-              type="text"
-              placeholder="firstname"
-            />
-            <p>{errors.firstname?.message}</p>
-          </div>
-          <div>
-            <input
-              {...register("lastname", {
-                pattern: /^[a-zA-Z]+$/, //funkar inte
-              })}
-              type="text"
-              name="lastname"
-              placeholder="lastname"
-            />
-            <p>{errors.lastname?.message}</p>
-          </div>
+        <div>
+          <input
+            {...register("firstname", {
+              pattern: /^[a-zA-Z]+$/, //funkar inte
+            })}
+            type="text"
+            placeholder="firstname"
+          />
+          <p>{errors.firstname?.message}</p>
+        </div>
+        <div>
+          <input
+            {...register("lastname", {
+              pattern: /^[a-zA-Z]+$/, //funkar inte
+            })}
+            type="text"
+            name="lastname"
+            placeholder="lastname"
+          />
+          <p>{errors.lastname?.message}</p>
+        </div>
 
-          <div>
-            <input
-              {...register("email", {
-                pattern: /^\S+@\S+$/i,
-              })}
-              type="text"
-              name="email"
-              placeholder="email"
-            />
-            <p>{errors.email?.message}</p>
-          </div>
+        <div>
+          <input
+            {...register("email", {
+              pattern: /^\S+@\S+$/i,
+            })}
+            type="text"
+            name="email"
+            placeholder="email"
+          />
+          <p>{errors.email?.message}</p>
+        </div>
 
-          <div>
-            <input
-              {...register("message", {
-                maxLength: 20,
-                minLength: { value: 2, message: "Du måste skriva minst två bokstäver" },
-              })}
-              type="text"
-              name="message"
-              placeholder="message"
-            />
-            <p>{errors.message?.message}</p>
-          </div>
+        <div>
+          <input
+            {...register("message", {
+              maxLength: 20,
+              minLength: { value: 2, message: "Du måste skriva minst två bokstäver" },
+            })}
+            type="text"
+            name="message"
+            placeholder="message"
+          />
+          <p>{errors.message?.message}</p>
+        </div>
 
-          <div>
-            <BookButton type="submit">Spara skiten</BookButton>
-          </div>
-        </form>
+        <div>
+          <BookButton type="submit">Spara skiten</BookButton>
+        </div>
       </ContactFormWrapper>
     </>
   );
