@@ -1,8 +1,12 @@
 import { ChangeEvent, useContext, useEffect, useState } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
-import { CurrentBookingContext, CurrentBookingDispatchContext } from "../contexts/CurrentBookingContext";
+import {
+  CurrentBookingContext,
+  CurrentBookingDispatchContext,
+} from "../contexts/CurrentBookingContext";
 import { ActionType } from "../reducers/CurrentBookingReducer";
+import { CalendarWrapper } from "./styled/Calendar";
 
 type ValuePiece = Date | null;
 type Value = ValuePiece | [ValuePiece, ValuePiece];
@@ -21,7 +25,13 @@ export const CalendarView = () => {
 
   return (
     <>
-      <Calendar minDate={new Date()} onChange={handleChange} value={date}></Calendar>
+      <CalendarWrapper>
+        <Calendar
+          minDate={new Date()}
+          onChange={handleChange}
+          value={date}
+        ></Calendar>
+      </CalendarWrapper>
     </>
   );
 };
