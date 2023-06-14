@@ -8,7 +8,7 @@ export const AmountInputWrapper = styled.div`
   /* flex-direction: column;
   justify-content: center;
   align-items: center; */
-  border: 2px solid red;
+  width: 100%;
   height: min-content;
 
   @media ${DeviceQuery.DESKTOP} {
@@ -33,11 +33,12 @@ export const AmountForm = styled.form`
     background-color: transparent;
     border: 2px solid #ff1c6f;
     padding: 6px 10px;
-    font-size: 12px;
+    font-size: 1rem;
   }
 
   .css-10wo9uf-option {
     font-size: 12px;
+    font-size: 1rem;
   }
 
   .css-1nmdiq5-menu {
@@ -47,6 +48,7 @@ export const AmountForm = styled.form`
   }
 
   @media ${DeviceQuery.DESKTOP} {
+    width: 75%;
   }
 `;
 
