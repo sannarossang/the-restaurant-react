@@ -1,7 +1,15 @@
 import { styled } from "styled-components";
+import { DeviceQuery } from "../../styles/breakpoints";
 
 export const CalendarWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
   .react-calendar {
+    @media ${DeviceQuery.DESKTOP} {
+      scale: 1.2;
+    }
     border: none;
 
     &__navigation {
