@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { DeviceQuery } from "../../../styles/breakpoints";
 
 export const HomeWrapper = styled.div`
   width: 100vw;
@@ -7,6 +8,10 @@ export const HomeWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  @media ${DeviceQuery.DESKTOP} {
+    background-color: pink;
+  }
 `;
 
 export const RestaurantTitle = styled.h1`
