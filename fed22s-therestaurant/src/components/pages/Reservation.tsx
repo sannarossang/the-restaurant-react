@@ -1,12 +1,16 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { BookingDispatchContext } from "../../contexts/BookingContext";
 import { defaultBookingValues } from "../../models/defaultBookingValues";
 import { IBooking } from "../../models/IBooking";
-import { getBooking } from "../../services/BookingService";
+import { ActionType } from "../../reducers/CurrentBookingReducer";
+import { deleteBooking, getBooking } from "../../services/BookingService";
 
 export const Reservation = () => {
   const { bookingId } = useParams();
   const [booking, setBooking] = useState<IBooking>(defaultBookingValues);
+  const dispatch = useContext(BookingDispatchContext);
+  const [showReservation, setshowReservation] = useState(true);
 
   useEffect(() => {
     const getData = async () => {
@@ -14,9 +18,15 @@ export const Reservation = () => {
       setBooking(bookingFromApi);
     };
     getData();
-    console.log("booking", booking);
   }, []);
-  console.log("booking after", booking);
+  console.log(booking);
+
+  const handleDelete = (id: string) => {
+    dispatch({ type: ActionType.DELETED, payload: bookingId || "" });
+    deleteBooking("booker", id);
+    setshowReservation(false);
+    alert("Din bokning har avbokats");
+  };
 
   return (
     <>
@@ -29,6 +39,8 @@ export const Reservation = () => {
       <p>Tid: {booking.seatingTime}</p>
       <p>Antal gäster: {booking.guests}</p>
       <p>Bokningsnummer: {booking._id}</p>
+      <button onClick={() => handleDelete(booking._id)}>Avboka</button>
+      {showReservation && <></>}
     </>
   );
 };
