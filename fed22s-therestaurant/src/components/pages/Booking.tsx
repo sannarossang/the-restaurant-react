@@ -13,7 +13,8 @@ export const Booking = () => {
       <CurrentBookingContext.Provider value={currentBooking}>
         <CurrentBookingDispatchContext.Provider value={dispatch}>
           {!currentBooking.booker.email ? <BookingForm /> : <></>}
-          {currentBooking.booker.email ? <BookingSummary /> : <></>}
+          {currentBooking.booker.email && !currentBooking._id ? <BookingSummary /> : <></>}
+          {currentBooking._id ? <BookingConfirmation /> : <></>}
         </CurrentBookingDispatchContext.Provider>
       </CurrentBookingContext.Provider>
     </>
