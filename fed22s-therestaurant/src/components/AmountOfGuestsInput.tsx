@@ -4,25 +4,23 @@ import { number, z } from "zod";
 import { IAmountOfGuestsInput } from "../models/IAmountOfGuestsInput";
 import Select, { SingleValue } from "react-select";
 import { useContext } from "react";
-import {
-  CurrentBookingContext,
-  CurrentBookingDispatchContext,
-} from "../contexts/CurrentBookingContext";
+import { CurrentBookingContext, CurrentBookingDispatchContext } from "../contexts/CurrentBookingContext";
 import { ActionType } from "../reducers/CurrentBookingReducer";
+import { AmountForm, AmountInputWrapper, AmountSmallHeading } from "./styled/AmountOfGuestsInput";
 
 const guestAmountInputOptions = [
-  { value: 1, label: "1" },
-  { value: 2, label: "2" },
-  { value: 3, label: "3" },
-  { value: 4, label: "4" },
-  { value: 5, label: "5" },
-  { value: 6, label: "6" },
-  { value: 7, label: "7" },
-  { value: 8, label: "8" },
-  { value: 9, label: "9" },
-  { value: 10, label: "10" },
-  { value: 11, label: "11" },
-  { value: 12, label: "12" },
+  { value: 1, label: "1 gäst" },
+  { value: 2, label: "2 gäster" },
+  { value: 3, label: "3 gäster" },
+  { value: 4, label: "4 gäster" },
+  { value: 5, label: "5 gäster" },
+  { value: 6, label: "6 gäster" },
+  { value: 7, label: "7 gäster" },
+  { value: 8, label: "8 gäster" },
+  { value: 9, label: "9 gäster" },
+  { value: 10, label: "10 gäster" },
+  { value: 11, label: "11 gäster" },
+  { value: 12, label: "12 gäster" },
 ];
 
 const schema = z.object({
@@ -44,9 +42,7 @@ export const AmountOfGuestsInput = () => {
   const { field } = useController({ name: "amount", control });
   const { errors } = formState;
 
-  const handleSelectChange = (
-    selectedValue: SingleValue<{ value: number }>
-  ) => {
+  const handleSelectChange = (selectedValue: SingleValue<{ value: number }>) => {
     selectedValue?.value;
     dispatch({
       type: ActionType.SELECTED_AMOUNT_OF_GUESTS,
@@ -56,19 +52,19 @@ export const AmountOfGuestsInput = () => {
 
   return (
     <>
-      <form>
-        <div>
+      <AmountInputWrapper>
+        <AmountForm>
+          {/* <AmountSmallHeading>VÄLJ ANTAL PERSONER</AmountSmallHeading> */}
           <Select
-            value={guestAmountInputOptions.find(
-              ({ value }) => value === field.value
-            )}
+            value={guestAmountInputOptions.find(({ value }) => value === field.value)}
             onChange={handleSelectChange}
             options={guestAmountInputOptions}
-            placeholder="amount"
+            placeholder="VÄLJ ANTAL PERSONER"
+            defaultMenuIsOpen={true}
           />
           <p>{errors.amount?.message}</p>
-        </div>
-      </form>
+        </AmountForm>
+      </AmountInputWrapper>
     </>
   );
 };

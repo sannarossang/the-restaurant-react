@@ -9,18 +9,9 @@ export const BookingForm = () => {
   const currentBooking = useContext(CurrentBookingContext);
   return (
     <>
-      ¨<h1>Booking</h1>
       {!currentBooking.guests ? <AmountOfGuestsInput /> : <></>}
-      {currentBooking.guests && !currentBooking.seatingDate ? (
-        <CalendarView />
-      ) : (
-        <></>
-      )}
-      {currentBooking.seatingDate && !currentBooking.seatingTime ? (
-        <AvailableTimes />
-      ) : (
-        <></>
-      )}
+      {currentBooking.guests && !currentBooking.seatingDate ? <CalendarView /> : <></>}
+      {currentBooking.seatingDate && !currentBooking.seatingTime ? <AvailableTimes /> : <></>}
       {currentBooking.seatingTime ? <GuestForm /> : <></>}
     </>
   );
