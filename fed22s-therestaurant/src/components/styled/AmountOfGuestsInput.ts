@@ -2,13 +2,14 @@ import styled from "styled-components";
 import { DeviceQuery } from "../../styles/breakpoints";
 
 export const AmountInputWrapper = styled.div`
-  width: 100vw;
+  /* width: 100vw;
   height: 100%;
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
   border: 2px solid red;
+  height: min-content;
 
   @media ${DeviceQuery.DESKTOP} {
   }
@@ -40,6 +41,7 @@ export const AmountForm = styled.form`
   }
 
   .css-1nmdiq5-menu {
+    position: initial;
     box-shadow: 1px;
     border-radius: 0px;
   }
