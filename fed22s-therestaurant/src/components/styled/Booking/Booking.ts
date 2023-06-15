@@ -16,7 +16,6 @@ export const BookingModal = styled.div`
   background-color: white;
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
   z-index: 99;
 
