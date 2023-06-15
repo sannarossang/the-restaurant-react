@@ -1,12 +1,9 @@
-import { ChangeEvent, useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
-import {
-  CurrentBookingContext,
-  CurrentBookingDispatchContext,
-} from "../contexts/CurrentBookingContext";
-import { ActionType } from "../reducers/CurrentBookingReducer";
-import { CalendarWrapper } from "./styled/Calendar";
+import { CurrentBookingDispatchContext } from "../../../../contexts/CurrentBookingContext";
+import { ActionType } from "../../../../reducers/CurrentBookingReducer";
+import { CalendarWrapper } from "../../../styled/Booking/BookingForm/Calendar";
 
 type ValuePiece = Date | null;
 type Value = ValuePiece | [ValuePiece, ValuePiece];

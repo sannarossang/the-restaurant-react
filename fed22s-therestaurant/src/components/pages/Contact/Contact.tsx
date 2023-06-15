@@ -1,5 +1,5 @@
-import { ContactForm } from "../forms/ContactForm";
-import { ContactWrapper } from "../styled/Contact/Contact";
+import { ContactForm } from "../../forms/ContactForm";
+import { ContactWrapper } from "../../styled/Contact/Contact";
 
 export const Contact = () => {
   return (

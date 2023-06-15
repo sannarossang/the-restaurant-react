@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { DeviceQuery } from "../../styles/breakpoints";
+import { DeviceQuery } from "../../../styles/breakpoints";
 
 interface ConfirmationProps {
   weight?: string;

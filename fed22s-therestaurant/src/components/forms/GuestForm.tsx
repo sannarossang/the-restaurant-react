@@ -7,14 +7,15 @@ import {
   NextButton,
   SmallContactHeading,
   ValidationError,
-} from "../styled/Forms/GuestForm";
+} from "../styled/Booking/BookingForm/GuestForm";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useContext } from "react";
-import { CurrentBookingContext, CurrentBookingDispatchContext } from "../../contexts/CurrentBookingContext";
+import {
+  CurrentBookingContext,
+  CurrentBookingDispatchContext,
+} from "../../contexts/CurrentBookingContext";
 import { ActionType } from "../../reducers/CurrentBookingReducer";
-import { IBooking } from "../../models/IBooking";
-import { createNewBooking } from "../../services/BookingService";
 
 const validationSchema = z.object({
   firstname: z.string().min(1, { message: "Du måste ange ditt förnamn." }),
@@ -49,12 +50,11 @@ export const GuestForm = () => {
     <>
       <GuestFormWrapper>
         <form
-          onSubmit={handleSubmit(data => {
+          onSubmit={handleSubmit((data) => {
             dispatch({
               type: ActionType.ADDED_CONTACT_DETAILS,
               payload: data,
             });
-            // createNewBooking("booker", currentbooking);
           })}
         >
           <SmallContactHeading>Kontaktuppgifter</SmallContactHeading>
@@ -64,7 +64,10 @@ export const GuestForm = () => {
             <ValidationError>{errors.firstname?.message}</ValidationError>
             <Input {...register("lastname")} placeholder="EFTERNAMN" />
             <ValidationError>{errors.lastname?.message}</ValidationError>
-            <Input {...register("phone")} placeholder="MOBILTELEFON (070 XXX XX XX)" />
+            <Input
+              {...register("phone")}
+              placeholder="MOBILTELEFON (070 XXX XX XX)"
+            />
             <ValidationError>{errors.phone?.message}</ValidationError>
             <Input {...register("email")} placeholder="EPOSTADRESS" />
             {/* Ändra tillbaka till type email när attrs funkar för det */}

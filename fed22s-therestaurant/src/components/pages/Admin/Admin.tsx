@@ -1,12 +1,14 @@
-import { Action } from "@remix-run/router";
-import { ChangeEvent, useContext, useEffect, useReducer, useState } from "react";
-import { boolean } from "zod";
-import { BookingContext, BookingDispatchContext } from "../../contexts/BookingContext";
-import { ActionType, BookingReducer } from "../../reducers/BookingReducer";
-import { deleteBooking, getBookings } from "../../services/BookingService";
-import { defaultBookingValues } from "../../models/defaultBookingValues";
-import { CreateBookingBtn } from "../styled/Admin/Admin";
-import { BookingsTable } from "../BookingsTable";
+import { ChangeEvent, useEffect, useReducer, useState } from "react";
+import {
+  BookingContext,
+  BookingDispatchContext,
+  IBookingContext,
+} from "../../../contexts/BookingContext";
+import { ActionType, BookingReducer } from "../../../reducers/BookingReducer";
+import { getBookings } from "../../../services/BookingService";
+import { defaultBookingValues } from "../../../models/defaultBookingValues";
+import { CreateBookingBtn } from "../../styled/Admin/Admin";
+import { BookingsTable } from "./AdminBooking/BookingsTable";
 
 export const Admin = () => {
   const bookingStates: IBookingContext = {

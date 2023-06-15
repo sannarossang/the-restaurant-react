@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import { CurrentBookingContext } from "../../contexts/CurrentBookingContext";
-import { CalendarView } from "../Calendar";
-import { AmountOfGuestsInput } from "../AmountOfGuestsInput";
-import { AvailableTimes } from "../AvailableTimes";
+import { CalendarView } from "../pages/Booking/BookingForm/Calendar";
+import { AmountOfGuestsInput } from "../pages/Booking/BookingForm/AmountOfGuestsInput";
+import { AvailableTimes } from "../pages/Booking/BookingForm/AvailableTimes";
 import { GuestForm } from "./GuestForm";
 
 export const BookingForm = () => {
@@ -10,8 +10,16 @@ export const BookingForm = () => {
   return (
     <>
       {!currentBooking.guests ? <AmountOfGuestsInput /> : <></>}
-      {currentBooking.guests && !currentBooking.seatingDate ? <CalendarView /> : <></>}
-      {currentBooking.seatingDate && !currentBooking.seatingTime ? <AvailableTimes /> : <></>}
+      {currentBooking.guests && !currentBooking.seatingDate ? (
+        <CalendarView />
+      ) : (
+        <></>
+      )}
+      {currentBooking.seatingDate && !currentBooking.seatingTime ? (
+        <AvailableTimes />
+      ) : (
+        <></>
+      )}
       {currentBooking.seatingTime ? <GuestForm /> : <></>}
     </>
   );

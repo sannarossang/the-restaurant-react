@@ -1,15 +1,11 @@
 import { useContext } from "react";
-import { IBooking } from "../models/IBooking";
+import { IBooking } from "../../../../models/IBooking";
 import {
   BookingContext,
   BookingDispatchContext,
-} from "../contexts/BookingContext";
-import { deleteBooking } from "../services/BookingService";
-import { ActionType } from "../reducers/BookingReducer";
-
-interface IBookingsTableProps {
-  bookings: IBooking[];
-}
+} from "../../../../contexts/BookingContext";
+import { deleteBooking } from "../../../../services/BookingService";
+import { ActionType } from "../../../../reducers/BookingReducer";
 
 export const BookingsTable = () => {
   const dispatch = useContext(BookingDispatchContext);

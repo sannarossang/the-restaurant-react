@@ -5,14 +5,14 @@ import {
   SeatingTimeSlot,
   SeatingTimesWrapper,
   Wrapper,
-} from "./styled/AvailableTimes";
+} from "../../../styled/Booking/BookingForm/AvailableTimes";
 import {
   CurrentBookingContext,
   CurrentBookingDispatchContext,
-} from "../contexts/CurrentBookingContext";
-import { ActionType } from "../reducers/CurrentBookingReducer";
-import { getBookings } from "../services/BookingService";
-import { IBooking } from "../models/IBooking";
+} from "../../../../contexts/CurrentBookingContext";
+import { ActionType } from "../../../../reducers/CurrentBookingReducer";
+import { getBookings } from "../../../../services/BookingService";
+import { IBooking } from "../../../../models/IBooking";
 
 export const AvailableTimes = () => {
   const seatings = ["18:00", "21:00"];

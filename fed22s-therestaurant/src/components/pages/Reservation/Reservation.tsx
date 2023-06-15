@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { BookingDispatchContext } from "../../contexts/BookingContext";
-import { defaultBookingValues } from "../../models/defaultBookingValues";
-import { IBooking } from "../../models/IBooking";
-import { ActionType } from "../../reducers/CurrentBookingReducer";
-import { deleteBooking, getBooking } from "../../services/BookingService";
+import { BookingDispatchContext } from "../../../contexts/BookingContext";
+import { defaultBookingValues } from "../../../models/defaultBookingValues";
+import { IBooking } from "../../../models/IBooking";
+import { deleteBooking, getBooking } from "../../../services/BookingService";
+import { ActionType } from "../../../reducers/BookingReducer";
 
 export const Reservation = () => {
   const { bookingId } = useParams();

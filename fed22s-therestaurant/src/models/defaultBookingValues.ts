@@ -10,4 +10,5 @@ export const defaultBookingValues = {
   message: "",
   seatingTime: "",
   seatingDate: "",
+  _id: "",
 };

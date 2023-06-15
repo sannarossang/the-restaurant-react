@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import { createNewBooking } from "../services/BookingService";
-import { BookingForm } from "./forms/BookingForm";
-import { CurrentBookingContext } from "../contexts/CurrentBookingContext";
+import { createNewBooking } from "../../../../services/BookingService";
+import { BookingForm } from "../../../forms/BookingForm";
+import { CurrentBookingContext } from "../../../../contexts/CurrentBookingContext";
 
 export const AdminBooking = () => {
   const newBooking = useContext(CurrentBookingContext);

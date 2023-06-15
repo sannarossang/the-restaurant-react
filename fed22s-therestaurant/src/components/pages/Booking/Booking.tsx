@@ -2,12 +2,12 @@ import { useReducer, useState } from "react";
 import {
   CurrentBookingContext,
   CurrentBookingDispatchContext,
-} from "../../contexts/CurrentBookingContext";
-import { CurrentBookingReducer } from "../../reducers/CurrentBookingReducer";
-import { BookingForm } from "../forms/BookingForm";
-import { defaultBookingValues } from "../../models/defaultBookingValues";
-import { BookingSummary } from "../BookingSummary";
-import { BookingConfirmation } from "../BookingConfirmation";
+} from "../../../contexts/CurrentBookingContext";
+import { CurrentBookingReducer } from "../../../reducers/CurrentBookingReducer";
+import { BookingForm } from "../../forms/BookingForm";
+import { defaultBookingValues } from "../../../models/defaultBookingValues";
+import { BookingSummary } from "./BookingForm/BookingSummary";
+import { BookingConfirmation } from "./BookingForm/BookingConfirmation";
 import {
   BookingModal,
   BookingWrapper,
@@ -15,9 +15,8 @@ import {
   ModalContent,
   ModalNavWrapper,
   Title,
-} from "../styled/Booking/Booking";
+} from "../../styled/Booking/Booking";
 import { Link } from "react-router-dom";
-import { RestaurantTitle } from "../styled/Home/Home";
 
 export const Booking = () => {
   const [currentBooking, dispatch] = useReducer(

@@ -2,36 +2,38 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { IContactFormInput } from "../../models/IContactFormInput";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { string, z } from "zod";
-import { ContactFormWrapper, ContactTitle } from "../styled/Contact/ContactForm";
+import {
+  ContactFormWrapper,
+  ContactTitle,
+} from "../styled/Contact/ContactForm";
 import { BookButton } from "../styled/Home/Home";
 
 const schema = z.object({
-  firstname: string().min(2, { message: "Du måste skriva ett efternamn som är minst två tecken långt" }),
-  lastname: string().min(2, { message: "Du måste skriva ett efternamn som är minst två tecken långt" }),
+  firstname: string().min(2, {
+    message: "Du måste skriva ett efternamn som är minst två tecken långt",
+  }),
+  lastname: string().min(2, {
+    message: "Du måste skriva ett efternamn som är minst två tecken långt",
+  }),
   email: string().email({ message: "Du måste skriva en korrekt emailadress" }),
   message: string().optional(),
 });
 
 export const ContactForm = () => {
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState,
-    formState: { dirtyFields, touchedFields, isValid },
-  } = useForm<IContactFormInput>({
-    mode: "onChange",
-    resolver: zodResolver(schema),
-    defaultValues: {
-      firstname: "",
-      lastname: "",
-      email: "",
-      message: "",
-    },
-  });
+  const { register, handleSubmit, reset, formState } =
+    useForm<IContactFormInput>({
+      mode: "onChange",
+      resolver: zodResolver(schema),
+      defaultValues: {
+        firstname: "",
+        lastname: "",
+        email: "",
+        message: "",
+      },
+    });
 
   const { errors } = formState;
-  const onSubmit: SubmitHandler<IContactFormInput> = data => {
+  const onSubmit: SubmitHandler<IContactFormInput> = (data) => {
     console.log(data);
     reset();
   };
@@ -78,7 +80,10 @@ export const ContactForm = () => {
           <input
             {...register("message", {
               maxLength: 20,
-              minLength: { value: 2, message: "Du måste skriva minst två bokstäver" },
+              minLength: {
+                value: 2,
+                message: "Du måste skriva minst två bokstäver",
+              },
             })}
             type="text"
             name="message"

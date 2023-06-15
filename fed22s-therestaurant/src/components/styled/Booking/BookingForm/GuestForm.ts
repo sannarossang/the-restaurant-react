@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { DeviceQuery } from "../../../styles/breakpoints";
+import { DeviceQuery } from "../../../../styles/breakpoints";
 
 export const GuestFormWrapper = styled.div`
   display: flex;

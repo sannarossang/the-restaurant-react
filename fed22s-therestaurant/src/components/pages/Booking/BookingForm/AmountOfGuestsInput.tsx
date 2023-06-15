@@ -1,15 +1,18 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, useController } from "react-hook-form";
 import { number, z } from "zod";
-import { IAmountOfGuestsInput } from "../models/IAmountOfGuestsInput";
+import { IAmountOfGuestsInput } from "../../../../models/IAmountOfGuestsInput";
 import Select, { SingleValue } from "react-select";
 import { useContext } from "react";
 import {
   CurrentBookingContext,
   CurrentBookingDispatchContext,
-} from "../contexts/CurrentBookingContext";
-import { ActionType } from "../reducers/CurrentBookingReducer";
-import { AmountForm, AmountInputWrapper } from "./styled/AmountOfGuestsInput";
+} from "../../../../contexts/CurrentBookingContext";
+import { ActionType } from "../../../../reducers/CurrentBookingReducer";
+import {
+  AmountForm,
+  AmountInputWrapper,
+} from "../../../styled/Booking/BookingForm/AmountOfGuestsInput";
 
 const guestAmountInputOptions = [
   { value: 1, label: "1 gäst" },

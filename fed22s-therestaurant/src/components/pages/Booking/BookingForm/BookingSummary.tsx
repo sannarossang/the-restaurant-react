@@ -2,8 +2,8 @@ import { useContext, useState } from "react";
 import {
   CurrentBookingContext,
   CurrentBookingDispatchContext,
-} from "../contexts/CurrentBookingContext";
-import { createNewBooking } from "../services/BookingService";
+} from "../../../../contexts/CurrentBookingContext";
+import { createNewBooking } from "../../../../services/BookingService";
 import {
   ConfirmBookingButton,
   ConfirmationText,
@@ -15,9 +15,8 @@ import {
   TermsAndConditions,
   Detail,
   SummaryWrapper,
-} from "./styled/BookingSummary";
-import { ActionType } from "../reducers/CurrentBookingReducer";
-import { Wrapper } from "./styled/AvailableTimes";
+} from "../../../styled/Booking/BookingSummary";
+import { ActionType } from "../../../../reducers/CurrentBookingReducer";
 
 export const BookingSummary = () => {
   const booking = useContext(CurrentBookingContext);

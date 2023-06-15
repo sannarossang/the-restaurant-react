@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { CurrentBookingContext } from "../contexts/CurrentBookingContext";
+import { CurrentBookingContext } from "../../../../contexts/CurrentBookingContext";
 import {
   ConfirmationDetails,
   ConfirmationGuestBox,
@@ -7,7 +7,7 @@ import {
   ConfirmationText,
   ConfirmationTextBox,
   ConfirmationWrapper,
-} from "./styled/BookingConfirmation";
+} from "../../../styled/Booking/BookingConfirmation";
 
 export const BookingConfirmation = () => {
   const booking = useContext(CurrentBookingContext);
@@ -20,7 +20,8 @@ export const BookingConfirmation = () => {
             Tack för din bokning, {booking.booker.firstname}!
           </ConfirmationText>
           <ConfirmationText size="12px">
-            Du är nu klar och din bekräftelse har skickats till din mejl: {booking.booker.email}
+            Du är nu klar och din bekräftelse har skickats till din mejl:{" "}
+            {booking.booker.email}
           </ConfirmationText>
         </ConfirmationTextBox>
 
