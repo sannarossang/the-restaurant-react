@@ -1,15 +1,23 @@
 import { useContext, useState } from "react";
-import { CurrentBookingContext, CurrentBookingDispatchContext } from "../contexts/CurrentBookingContext";
+import {
+  CurrentBookingContext,
+  CurrentBookingDispatchContext,
+} from "../contexts/CurrentBookingContext";
 import { createNewBooking } from "../services/BookingService";
 import {
   ConfirmBookingButton,
   ConfirmationText,
   GDPRWrapper,
   GDPRcheckbox,
+  BookingDetails,
+  BookingDetailsWrapper,
   InfoText,
   TermsAndConditions,
+  Detail,
+  SummaryWrapper,
 } from "./styled/BookingSummary";
 import { ActionType } from "../reducers/CurrentBookingReducer";
+import { Wrapper } from "./styled/AvailableTimes";
 
 export const BookingSummary = () => {
   const booking = useContext(CurrentBookingContext);
@@ -29,28 +37,42 @@ export const BookingSummary = () => {
 
   return (
     <>
-      <div>
-        <p>
-          {" "}
-          {booking.booker.firstname} {booking.booker.lastname}
-        </p>
-        <p>gäster: {booking.guests}</p>
-        <p>tid: {booking.seatingTime} </p>
+      <SummaryWrapper>
+        <BookingDetailsWrapper>
+          <BookingDetails>
+            <Detail>Datum</Detail>{" "}
+            <Detail weight="bold">{booking.seatingDate}</Detail>
+          </BookingDetails>
+          <BookingDetails>
+            <Detail>Gäster</Detail>{" "}
+            <Detail weight="bold">{booking.guests}</Detail>
+          </BookingDetails>
+          <BookingDetails>
+            <Detail>Tid</Detail>{" "}
+            <Detail weight="bold">{booking.seatingTime}</Detail>
+          </BookingDetails>
+        </BookingDetailsWrapper>
+
         <GDPRWrapper>
-          <InfoText>Nästan där</InfoText>
-          <InfoText>För att fortsätta måste du godkänna restaurangens villkor.</InfoText>
-          <TermsAndConditions>LÄS BOOKER BOOKING AB ALLMÄNNA VILLKOR</TermsAndConditions>
+          <InfoText weight="bold">Nästan där</InfoText>
+          <InfoText>
+            För att fortsätta måste du godkänna restaurangens villkor.
+          </InfoText>
+          <TermsAndConditions>
+            LÄS BOOKER BOOKING AB ALLMÄNNA VILLKOR
+          </TermsAndConditions>
           <div>
             <GDPRcheckbox checked={checked} onChange={handleChange} />{" "}
             <ConfirmationText>
-              Jag godkänner villkoren och att Restaurang Booker sparar mina uppgifter.
+              Jag godkänner villkoren och att Restaurang Booker sparar mina
+              uppgifter.
             </ConfirmationText>
           </div>
         </GDPRWrapper>
         <ConfirmBookingButton disabled={!checked} onClick={handleBooking}>
           BOKA!!!!
         </ConfirmBookingButton>
-      </div>
+      </SummaryWrapper>
     </>
   );
 };
