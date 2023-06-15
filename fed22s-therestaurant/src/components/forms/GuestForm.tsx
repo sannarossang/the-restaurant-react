@@ -1,7 +1,6 @@
 import { useForm } from "react-hook-form";
 import {
   GuestFormWrapper,
-  GuestInput,
   Input,
   InputWrapper,
   MessageInput,
@@ -61,13 +60,13 @@ export const GuestForm = () => {
           <SmallContactHeading>Kontaktuppgifter</SmallContactHeading>
 
           <InputWrapper>
-            <Input type="text" {...register("firstname")} placeholder="FÖRNAMN" />
+            <Input {...register("firstname")} placeholder="FÖRNAMN" />
             <ValidationError>{errors.firstname?.message}</ValidationError>
-            <Input type="text" {...register("lastname")} placeholder="EFTERNAMN" />
+            <Input {...register("lastname")} placeholder="EFTERNAMN" />
             <ValidationError>{errors.lastname?.message}</ValidationError>
-            <Input type="text" {...register("phone")} placeholder="MOBILTELEFON (070 XXX XX XX)" />
+            <Input {...register("phone")} placeholder="MOBILTELEFON (070 XXX XX XX)" />
             <ValidationError>{errors.phone?.message}</ValidationError>
-            <Input type="text" {...register("email")} placeholder="EPOSTADRESS" />
+            <Input {...register("email")} placeholder="EPOSTADRESS" />
             {/* Ändra tillbaka till type email när attrs funkar för det */}
             <ValidationError>{errors.email?.message}</ValidationError>
           </InputWrapper>

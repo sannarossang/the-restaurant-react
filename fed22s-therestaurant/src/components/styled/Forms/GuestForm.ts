@@ -44,29 +44,29 @@ export const InputWrapper = styled.div`
 //   */
 // `;
 
-export const GuestInput = styled.input`
-  border-radius: 0px;
-  height: 50px;
-  display: flex;
-  align-items: flex-start;
-  justify-content: start;
-  width: 100%;
+// export const GuestInput = styled.input`
+//   border-radius: 0px;
+//   height: 50px;
+//   display: flex;
+//   align-items: flex-start;
+//   justify-content: start;
+//   width: 100%;
 
-  &::placeholder {
-    position: absolute;
-    left: 5px;
-    top: 5px;
-    padding: 5px;
-    font-size: 10px;
-  }
+//   &::placeholder {
+//     position: absolute;
+//     left: 5px;
+//     top: 5px;
+//     padding: 5px;
+//     font-size: 10px;
+//   }
 
-  @media ${DeviceQuery.DESKTOP} {
-    width: 47%;
-    height: 80px;
-    column-gap: 20px;
-    margin: 5px;
-  }
-`;
+//   @media ${DeviceQuery.DESKTOP} {
+//     width: 47%;
+//     height: 80px;
+//     column-gap: 20px;
+//     margin: 5px;
+//   }
+// `;
 
 export const Input = styled.input.attrs({
   type: "text",
@@ -77,6 +77,7 @@ export const Input = styled.input.attrs({
   align-items: flex-start;
   justify-content: start;
   width: 100%;
+  padding: 20px;
 
   &::placeholder {
     position: absolute;
@@ -86,13 +87,13 @@ export const Input = styled.input.attrs({
     font-size: 10px;
   }
 
-  &:focus {
-    border: 2px solid pink;
-    background-color: pink;
+  &:hover {
+    border: 2px solid #ff1c6f;
   }
 
-  &:hover {
-    background-color: yellow;
+  &:focus {
+    border: 2px solid #ff1c6f;
+    border-radius: 0px;
   }
 
   &:visited {
@@ -100,11 +101,12 @@ export const Input = styled.input.attrs({
   }
 
   &:active {
-    border-radius: 2px solid blue;
+    border: 2px solid pink;
+    border-radius: 0px;
   }
 
   @media ${DeviceQuery.DESKTOP} {
-    width: 47%;
+    width: 43%;
     height: 80px;
     column-gap: 20px;
     margin: 5px;
@@ -123,6 +125,10 @@ export const MessageInput = styled.input`
     top: 5px;
     padding: 5px;
     font-size: 10px;
+  }
+
+  &:hover {
+    border: 2px solid #ff1c6f;
   }
 
   @media ${DeviceQuery.DESKTOP} {
