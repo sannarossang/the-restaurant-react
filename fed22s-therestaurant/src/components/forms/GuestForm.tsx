@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import {
+  CancelButton,
   GuestFormWrapper,
   Input,
   InputContainer,
@@ -88,6 +89,7 @@ export const GuestForm = () => {
               placeholder="MEDDELA ALLERGIER ELLER ÖNSKEMÅL"
             ></MessageInput>
           </InputWrapper>
+
           <NextButton>Nästa</NextButton>
         </form>
       </GuestFormWrapper>

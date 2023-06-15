@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { DeviceQuery } from "../../../../styles/breakpoints";
+import { DefaultButton } from "../../Buttons";
 
 export const GuestFormWrapper = styled.div`
   width: 100%;
@@ -138,6 +139,8 @@ export const NextButton = styled.button`
     width: 100%;
   }
 `;
+
+export const CancelButton = styled(NextButton)``;
 
 export const ValidationError = styled.p`
   font-size: 10px;
