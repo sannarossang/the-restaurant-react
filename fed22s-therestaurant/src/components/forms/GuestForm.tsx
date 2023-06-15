@@ -1,16 +1,17 @@
 import { useForm } from "react-hook-form";
 import {
-  GuestInput,
+  GuestFormWrapper,
+  Input,
+  InputWrapper,
   MessageInput,
-  StyledGuestForm,
+  NextButton,
+  SmallContactHeading,
+  ValidationError,
 } from "../styled/Forms/GuestForm";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useContext } from "react";
-import {
-  CurrentBookingContext,
-  CurrentBookingDispatchContext,
-} from "../../contexts/CurrentBookingContext";
+import { CurrentBookingContext, CurrentBookingDispatchContext } from "../../contexts/CurrentBookingContext";
 import { ActionType } from "../../reducers/CurrentBookingReducer";
 import { IBooking } from "../../models/IBooking";
 import { createNewBooking } from "../../services/BookingService";
@@ -46,48 +47,37 @@ export const GuestForm = () => {
 
   return (
     <>
-      <StyledGuestForm
-        onSubmit={handleSubmit((data) => {
-          dispatch({
-            type: ActionType.ADDED_CONTACT_DETAILS,
-            payload: data,
-          });
-          // createNewBooking("booker", currentbooking);
-        })}
-      >
-        <GuestInput
-          type="text"
-          {...register("firstname")}
-          placeholder="Förnamn"
-        ></GuestInput>
-        <p>{errors.firstname?.message}</p>
+      <GuestFormWrapper>
+        <form
+          onSubmit={handleSubmit(data => {
+            dispatch({
+              type: ActionType.ADDED_CONTACT_DETAILS,
+              payload: data,
+            });
+            // createNewBooking("booker", currentbooking);
+          })}
+        >
+          <SmallContactHeading>Kontaktuppgifter</SmallContactHeading>
 
-        <GuestInput
-          type="text"
-          {...register("lastname")}
-          placeholder="Efternamn"
-        ></GuestInput>
-        <p>{errors.lastname?.message}</p>
-        <GuestInput
-          type="text"
-          {...register("phone")}
-          placeholder="070 XXX XX XX"
-        ></GuestInput>
-        <p>{errors.phone?.message}</p>
-        <GuestInput
-          type="email"
-          {...register("email")}
-          placeholder="emailadress@gmail.com"
-        ></GuestInput>
-        <p>{errors.email?.message}</p>
-
-        <MessageInput
-          type="text"
-          {...register("message")}
-          placeholder="Eventuella allergier eller andra önskemål"
-        ></MessageInput>
-        <button>Nästa</button>
-      </StyledGuestForm>
+          <InputWrapper>
+            <Input {...register("firstname")} placeholder="FÖRNAMN" />
+            <ValidationError>{errors.firstname?.message}</ValidationError>
+            <Input {...register("lastname")} placeholder="EFTERNAMN" />
+            <ValidationError>{errors.lastname?.message}</ValidationError>
+            <Input {...register("phone")} placeholder="MOBILTELEFON (070 XXX XX XX)" />
+            <ValidationError>{errors.phone?.message}</ValidationError>
+            <Input {...register("email")} placeholder="EPOSTADRESS" />
+            {/* Ändra tillbaka till type email när attrs funkar för det */}
+            <ValidationError>{errors.email?.message}</ValidationError>
+          </InputWrapper>
+          <MessageInput
+            type="text"
+            {...register("message")}
+            placeholder="MEDDELA ALLERGIER ELLER ÖNSKEMÅL"
+          ></MessageInput>
+          <NextButton>Nästa</NextButton>
+        </form>
+      </GuestFormWrapper>
     </>
   );
 };
