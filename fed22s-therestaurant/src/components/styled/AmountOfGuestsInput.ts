@@ -2,13 +2,14 @@ import styled from "styled-components";
 import { DeviceQuery } from "../../styles/breakpoints";
 
 export const AmountInputWrapper = styled.div`
-  width: 100vw;
+  /* width: 100vw;
   height: 100%;
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column;
   justify-content: center;
-  align-items: center;
-  border: 2px solid red;
+  align-items: center; */
+  width: 100%;
+  height: min-content;
 
   @media ${DeviceQuery.DESKTOP} {
   }
@@ -32,19 +33,22 @@ export const AmountForm = styled.form`
     background-color: transparent;
     border: 2px solid #ff1c6f;
     padding: 6px 10px;
-    font-size: 12px;
+    font-size: 1rem;
   }
 
   .css-10wo9uf-option {
     font-size: 12px;
+    font-size: 1rem;
   }
 
   .css-1nmdiq5-menu {
+    position: initial;
     box-shadow: 1px;
     border-radius: 0px;
   }
 
   @media ${DeviceQuery.DESKTOP} {
+    width: 75%;
   }
 `;
 
