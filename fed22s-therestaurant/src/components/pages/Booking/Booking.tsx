@@ -30,7 +30,7 @@ export const Booking = () => {
           <BookingWrapper>
             <BookingModal>
               <ModalNavWrapper>
-                <Title>RESTAURANG AMOUT</Title>
+                <Title>RESTAURANG BOOKER</Title>
                 <ExitButton>
                   <Link to="/">X</Link>
                 </ExitButton>
