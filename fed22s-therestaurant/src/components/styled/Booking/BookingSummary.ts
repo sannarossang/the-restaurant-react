@@ -1,5 +1,8 @@
 import { styled } from "styled-components";
 import { Color } from "../../../styles/colors";
+import { BookButton } from "../Home/Home";
+import { DefaultButton } from "../Buttons";
+import { DeviceQuery } from "../../../styles/breakpoints";
 interface InfoTextProps {
   weight?: string;
 }
@@ -11,7 +14,12 @@ interface DetailProps {
 export const SummaryWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 30px;
+
+  @media ${DeviceQuery.DESKTOP} {
+    gap: 50px;
+  }
 `;
 
 export const BookingDetailsWrapper = styled.div`
@@ -42,34 +50,39 @@ export const GDPRcheckbox = styled.input.attrs({ type: "checkbox" })`
 `;
 
 export const GDPRWrapper = styled.div`
+  width: 90%;
+  height: 50%;
   display: flex;
   flex-direction: column;
-  /* gap: 20px; */
+  gap: 10%;
+
+  @media ${DeviceQuery.DESKTOP} {
+    gap: 30px;
+  }
+`;
+
+export const ConfirmationWrapper = styled.div`
+  width: 90%;
 `;
 
 export const InfoText = styled.span<InfoTextProps>`
   font-weight: ${(props: InfoTextProps) => props.weight};
   display: block;
-  /* margin: 0;
-  padding: 0; */
 `;
 
 export const TermsAndConditions = styled.span`
   display: block;
+  border: 1px solid grey;
+  box-sizing: border-box;
+  padding: 5%;
 `;
 
 export const ConfirmationText = styled.span`
   display: inline;
 `;
 
-export const ConfirmBookingButton = styled.button`
-  margin-top: 20px;
-  width: 100px;
-  padding: 0.4rem 0.4rem;
-  background-color: blue;
-  color: white;
-  border: none;
-  border-radius: 5px;
+export const ConfirmBookingButton = styled(DefaultButton)`
+  width: 90%;
 
   &:hover {
     background-color: lightblue;
