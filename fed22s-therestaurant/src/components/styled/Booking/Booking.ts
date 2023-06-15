@@ -29,12 +29,15 @@ export const BookingModal = styled.div`
 `;
 
 export const ModalContent = styled.div`
-  padding-top: 2%;
+  margin-top: 10%;
   height: 100%;
   width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+
+  @media ${DeviceQuery.DESKTOP} {
+    align-items: center;
+  }
 `;
 
 export const Title = styled.h1`
