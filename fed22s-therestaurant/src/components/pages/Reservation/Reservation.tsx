@@ -10,6 +10,7 @@ import {
   DeletedText,
   DeletedWrapper,
   ReservationDetails,
+  ReservationHeader,
   ReservationReference,
   ReservationText,
   ReservationWrapper,
@@ -43,7 +44,7 @@ export const Reservation = () => {
     <>
       {showReservation && (
         <ReservationWrapper>
-          <h1>Hej! Här är din bokning, {booking.booker.firstname}!</h1>
+          <ReservationHeader>Hej! Här är din bokning, {booking.booker.firstname}!</ReservationHeader>
           <ReservationDetails>
             <ReservationReference>
               <ReservationText weight="bold">Bokningsinformation</ReservationText>
