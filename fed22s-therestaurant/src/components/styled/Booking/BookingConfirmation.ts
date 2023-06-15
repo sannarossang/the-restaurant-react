@@ -28,7 +28,7 @@ export const ConfirmationTextBox = styled.div`
 
 export const ConfirmationDetails = styled.div`
   background-color: #fcf3e8;
-  width: 90%;
+  width: 70%;
 
   @media ${DeviceQuery.DESKTOP} {
     width: 70%;

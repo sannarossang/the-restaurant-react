@@ -14,10 +14,7 @@ export enum ActionType {
   DELETED,
 }
 
-export const CurrentBookingReducer = (
-  booking: IBooking,
-  action: IAction
-): IBooking => {
+export const CurrentBookingReducer = (booking: IBooking, action: IAction): IBooking => {
   switch (action.type) {
     case ActionType.SELECTED_AMOUNT_OF_GUESTS: {
       return { ...booking, guests: action.payload };
