@@ -16,6 +16,8 @@ import {
   Detail,
   SummaryWrapper,
   ConfirmationWrapper,
+  CancelButton,
+  ButtonContainer,
 } from "../../../styled/Booking/BookingSummary";
 import { ActionType } from "../../../../reducers/CurrentBookingReducer";
 
@@ -74,9 +76,13 @@ export const BookingSummary = () => {
             </ConfirmationText>
           </ConfirmationWrapper>
         </GDPRWrapper>
-        <ConfirmBookingButton disabled={!checked} onClick={handleBooking}>
-          BOKA!!!!
-        </ConfirmBookingButton>
+
+        <ButtonContainer>
+          <CancelButton>Avbryt</CancelButton>
+          <ConfirmBookingButton disabled={!checked} onClick={handleBooking}>
+            BOKA
+          </ConfirmBookingButton>
+        </ButtonContainer>
       </SummaryWrapper>
     </>
   );

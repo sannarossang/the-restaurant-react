@@ -92,3 +92,28 @@ export const ConfirmBookingButton = styled(DefaultButton)`
     background-color: lightgrey;
   }
 `;
+
+export const ButtonContainer = styled.div`
+  margin-top: -10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+`;
+
+export const CancelButton = styled(DefaultButton)`
+  width: 90%;
+  border: 2px solid ${Color.DISABLED};
+  color: gray;
+
+  &:enabled:hover {
+    background-color: transparent;
+    border: 2px solid black;
+    color: ${Color.PRIMARY_DARK};
+  }
+  &:disabled {
+    cursor: default;
+    background-color: lightgrey;
+    border: none;
+  }
+`;
