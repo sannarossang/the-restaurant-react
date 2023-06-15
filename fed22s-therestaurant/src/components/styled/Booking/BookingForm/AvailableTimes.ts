@@ -1,8 +1,10 @@
 import styled from "styled-components";
 import { DeviceQuery } from "../../../../styles/breakpoints";
+import { Color } from "../../../../styles/colors";
 
 export const Wrapper = styled.div`
   width: 100vw;
+  height: min-content;
   display: flex;
   align-items: center;
 `;
@@ -38,8 +40,9 @@ export const SeatingTimeSlot = styled.button`
 
   &:disabled {
     cursor: default;
-    background-color: lightgrey;
+    background-color: ${Color.DISABLED};
     border: none;
+    color: #363636;
   }
 `;
 

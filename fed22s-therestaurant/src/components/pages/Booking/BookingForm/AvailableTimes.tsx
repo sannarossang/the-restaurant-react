@@ -84,13 +84,13 @@ export const AvailableTimes = () => {
               {isFullyBooked(availableSeatsEarly) ? "Fullbokat" : "Boka"}
             </BookSeating>
           </SeatingTimeSlot>
-          <SeatingTimeSlot onClick={() => handleSelectedTime(seatings[1])}>
+          <SeatingTimeSlot
+            disabled={isFullyBooked(availableSeatsLate)}
+            onClick={() => handleSelectedTime(seatings[1])}
+          >
             <SeatingTime>{seatings[1]}</SeatingTime>
             <BookSeating>
-              {availableSeatsLate === 0 ||
-              currentBooking.guests > availableSeatsLate
-                ? "Fullbokat"
-                : "Boka"}
+              {isFullyBooked(availableSeatsLate) ? "Fullbokat" : "Boka"}
             </BookSeating>
           </SeatingTimeSlot>
         </SeatingTimesWrapper>

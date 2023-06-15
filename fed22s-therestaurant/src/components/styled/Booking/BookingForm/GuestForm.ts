@@ -1,11 +1,21 @@
 import styled from "styled-components";
 import { DeviceQuery } from "../../../../styles/breakpoints";
+import { DefaultButton } from "../../Buttons";
 
 export const GuestFormWrapper = styled.div`
+  width: 100%;
+  height: min-content;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
+  form {
+    width: 80%;
+    @media ${DeviceQuery.DESKTOP} {
+      width: 90%;
+    }
+  }
 `;
 
 export const SmallContactHeading = styled.p`
@@ -25,48 +35,23 @@ export const InputWrapper = styled.div`
 
   @media ${DeviceQuery.DESKTOP} {
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     flex-wrap: wrap;
-    align-items: center;
+    margin: 0;
   }
 `;
 
-// export const StyledGuestForm = styled.form`
-//   /* display: flex;
-//   /* width: 80vw; */
-//   /* flex-direction: column;
-//   align-items: center; */ */
+export const InputContainer = styled.div`
+  text-align: left;
+  display: flex;
+  flex-direction: column;
 
-//   /* button {
-//     width: 50px;
-//   } /* ska vi göra en återanvändningsbar knapp för både detta och contact form?
-//   eller vill vi ha såpass olika styling på dom?
-//   */
-// `;
-
-// export const GuestInput = styled.input`
-//   border-radius: 0px;
-//   height: 50px;
-//   display: flex;
-//   align-items: flex-start;
-//   justify-content: start;
-//   width: 100%;
-
-//   &::placeholder {
-//     position: absolute;
-//     left: 5px;
-//     top: 5px;
-//     padding: 5px;
-//     font-size: 10px;
-//   }
-
-//   @media ${DeviceQuery.DESKTOP} {
-//     width: 47%;
-//     height: 80px;
-//     column-gap: 20px;
-//     margin: 5px;
-//   }
-// `;
+  @media ${DeviceQuery.DESKTOP} {
+    width: 48%;
+    margin: 0;
+    padding: 0;
+  }
+`;
 
 export const Input = styled.input.attrs({
   type: "text",
@@ -77,7 +62,11 @@ export const Input = styled.input.attrs({
   align-items: flex-start;
   justify-content: start;
   width: 100%;
-  padding: 20px;
+  padding-top: 12%;
+  padding-bottom: 12%;
+  padding-left: 5%;
+  font-size: 1.3rem;
+  box-sizing: border-box;
 
   &::placeholder {
     position: absolute;
@@ -106,35 +95,20 @@ export const Input = styled.input.attrs({
   }
 
   @media ${DeviceQuery.DESKTOP} {
-    width: 43%;
+    font-size: 1rem;
     height: 80px;
     column-gap: 20px;
-    margin: 5px;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    padding-left: 5%;
   }
 `;
 
-export const MessageInput = styled.input`
-  width: 100%;
-  height: 80px;
-  border-radius: 0px;
-
-  &::placeholder {
-    position: absolute;
-    width: 50%;
-    left: 5px;
-    top: 5px;
-    padding: 5px;
-    font-size: 10px;
-  }
-
-  &:hover {
-    border: 2px solid #ff1c6f;
-  }
+export const MessageInput = styled(Input)`
+  font-size: 1rem;
 
   @media ${DeviceQuery.DESKTOP} {
-    /* width: 48%;
-    height: 80px; */
-    font-size: 15px;
+    width: 100%;
     margin-top: 5px;
   }
 `;
@@ -165,6 +139,8 @@ export const NextButton = styled.button`
     width: 100%;
   }
 `;
+
+export const CancelButton = styled(NextButton)``;
 
 export const ValidationError = styled.p`
   font-size: 10px;

@@ -11,8 +11,9 @@ export const ConfirmationWrapper = styled.div`
   display: flex;
   text-align: left;
   flex-direction: column;
+  align-items: center;
   padding: 30px;
-  width: 70%;
+  width: 90%;
 
   @media ${DeviceQuery.DESKTOP} {
   }
@@ -28,7 +29,7 @@ export const ConfirmationTextBox = styled.div`
 
 export const ConfirmationDetails = styled.div`
   background-color: #fcf3e8;
-  width: 70%;
+  width: 100%;
 
   @media ${DeviceQuery.DESKTOP} {
     width: 70%;
@@ -52,6 +53,7 @@ export const ConfirmationGuestBox = styled.div`
 export const ConfirmationText = styled.p<ConfirmationProps>`
   font-size: ${(props: ConfirmationProps) => props.size || "12px"};
   font-weight: ${(props: ConfirmationProps) => props.weight};
+
   @media ${DeviceQuery.DESKTOP} {
   }
 `;

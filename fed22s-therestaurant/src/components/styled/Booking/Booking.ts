@@ -16,7 +16,6 @@ export const BookingModal = styled.div`
   background-color: white;
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
   z-index: 99;
 
@@ -29,12 +28,16 @@ export const BookingModal = styled.div`
 `;
 
 export const ModalContent = styled.div`
-  padding-top: 2%;
+  margin-top: 10%;
   height: 100%;
   width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+
+  @media ${DeviceQuery.DESKTOP} {
+    margin-top: 0;
+    align-items: center;
+  }
 `;
 
 export const Title = styled.h1`
@@ -43,8 +46,8 @@ export const Title = styled.h1`
 
 export const ModalNavWrapper = styled.div`
   width: 100%;
-  background-color: lightgrey;
-  height: 10%;
+  background-color: #f2fa5c;
+  height: 8%;
   display: grid;
   grid-template-columns: auto auto;
   justify-items: end;

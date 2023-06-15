@@ -15,6 +15,9 @@ import {
   TermsAndConditions,
   Detail,
   SummaryWrapper,
+  ConfirmationWrapper,
+  CancelButton,
+  ButtonContainer,
 } from "../../../styled/Booking/BookingSummary";
 import { ActionType } from "../../../../reducers/CurrentBookingReducer";
 
@@ -53,24 +56,33 @@ export const BookingSummary = () => {
         </BookingDetailsWrapper>
 
         <GDPRWrapper>
-          <InfoText weight="bold">Nästan där</InfoText>
-          <InfoText>
-            För att fortsätta måste du godkänna restaurangens villkor.
-          </InfoText>
-          <TermsAndConditions>
-            LÄS BOOKER BOOKING AB ALLMÄNNA VILLKOR
-          </TermsAndConditions>
           <div>
+            <InfoText weight="bold">Nästan där</InfoText>
+            <InfoText>
+              För att fortsätta måste du godkänna restaurangens villkor.
+            </InfoText>
+          </div>
+          <div>
+            <TermsAndConditions>
+              LÄS BOOKER BOOKING AB ALLMÄNNA VILLKOR
+            </TermsAndConditions>
+          </div>
+
+          <ConfirmationWrapper>
             <GDPRcheckbox checked={checked} onChange={handleChange} />{" "}
             <ConfirmationText>
               Jag godkänner villkoren och att Restaurang Booker sparar mina
               uppgifter.
             </ConfirmationText>
-          </div>
+          </ConfirmationWrapper>
         </GDPRWrapper>
-        <ConfirmBookingButton disabled={!checked} onClick={handleBooking}>
-          BOKA!!!!
-        </ConfirmBookingButton>
+
+        <ButtonContainer>
+          <CancelButton>Avbryt</CancelButton>
+          <ConfirmBookingButton disabled={!checked} onClick={handleBooking}>
+            BOKA
+          </ConfirmBookingButton>
+        </ButtonContainer>
       </SummaryWrapper>
     </>
   );
