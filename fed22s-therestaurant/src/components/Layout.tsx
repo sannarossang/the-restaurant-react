@@ -5,16 +5,26 @@ import { useEffect, useState } from "react";
 
 export const Layout = () => {
   const [filter, setFilter] = useState("");
+  const [filteredClass, setFilteredClass] = useState("");
   const location = useLocation();
 
   useEffect(() => {
     const checkLocation = () => {
-      if (location.pathname === "/") setFilter("grayscale(100%)");
-      if (location.pathname === "/booking")
+      if (location.pathname != "/" || "/booking") setFilteredClass("");
+
+      if (location.pathname === "/") {
+        setFilter("grayscale(100%)");
+        setFilteredClass("home");
+      }
+
+      if (location.pathname === "/booking") {
         setFilter(`grayscale(100%) brightness(20%)`);
+        setFilteredClass("home");
+      }
     };
 
     checkLocation();
+    console.log(location.pathname);
   }, [location]);
 
   console.log(filter);
@@ -22,7 +32,7 @@ export const Layout = () => {
   return (
     <>
       <ContentWrapper
-        className={location.pathname === "/" || "/booking" ? "home" : ""}
+        className={filteredClass ? filteredClass : ""}
         filter={filter}
       >
         <header>
