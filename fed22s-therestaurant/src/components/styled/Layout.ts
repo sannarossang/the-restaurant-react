@@ -14,9 +14,9 @@ export const ContentWrapper = styled.div<ContentWrapperProps>`
     "header"
     "main"
     "footer";
-  position: relative;
 
-  header {
+  header,
+  main > * {
     position: relative;
   }
 

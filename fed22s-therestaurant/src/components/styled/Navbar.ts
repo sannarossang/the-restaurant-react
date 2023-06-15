@@ -28,6 +28,7 @@ export const Nav = styled.ul`
   a {
     text-decoration: none;
     color: ${Color.PRIMARY_LIGHT};
+    text-shadow: 1px 2px black;
 
     &:hover {
       text-shadow: 1px 1px ${Color.TRANSPARENT_PINK};
