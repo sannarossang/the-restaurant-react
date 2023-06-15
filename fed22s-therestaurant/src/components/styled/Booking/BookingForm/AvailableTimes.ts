@@ -3,6 +3,7 @@ import { DeviceQuery } from "../../../../styles/breakpoints";
 
 export const Wrapper = styled.div`
   width: 100vw;
+  height: min-content;
   display: flex;
   align-items: center;
 `;
