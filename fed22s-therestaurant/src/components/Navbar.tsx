@@ -7,14 +7,18 @@ export const Navbar = () => {
       <NavWrapper>
         <Nav>
           <NavItem>
-            <Link to="/">Hem</Link>
+            <Link to="/">HEM</Link>
           </NavItem>
-          <NavItem>Meny</NavItem>
+
           <NavItem>
-            <Link to="/contact">Kontakta oss</Link>
+            <Link to=""> MENY</Link>
+          </NavItem>
+
+          <NavItem>
+            <Link to="/booking"> BOKA BORD</Link>
           </NavItem>
           <NavItem>
-            <Link to="/booking">Boka bord</Link>
+            <Link to="/contact">KONTAKTA OSS</Link>
           </NavItem>
         </Nav>
       </NavWrapper>

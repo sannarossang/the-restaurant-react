@@ -46,7 +46,7 @@ export const Title = styled.h1`
 
 export const ModalNavWrapper = styled.div`
   width: 100%;
-  background-color: #f2fa5c;
+  background-color: #fcf3e8;
   height: 8%;
   display: grid;
   grid-template-columns: auto auto;
