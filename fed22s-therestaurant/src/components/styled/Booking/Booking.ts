@@ -36,6 +36,7 @@ export const ModalContent = styled.div`
   justify-content: center;
 
   @media ${DeviceQuery.DESKTOP} {
+    margin-top: 0;
     align-items: center;
   }
 `;

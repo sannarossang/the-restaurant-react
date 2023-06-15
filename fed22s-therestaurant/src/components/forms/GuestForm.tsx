@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import {
   GuestFormWrapper,
   Input,
+  InputContainer,
   InputWrapper,
   MessageInput,
   NextButton,
@@ -60,24 +61,33 @@ export const GuestForm = () => {
           <SmallContactHeading>Kontaktuppgifter</SmallContactHeading>
 
           <InputWrapper>
-            <Input {...register("firstname")} placeholder="FÖRNAMN" />
-            <ValidationError>{errors.firstname?.message}</ValidationError>
-            <Input {...register("lastname")} placeholder="EFTERNAMN" />
-            <ValidationError>{errors.lastname?.message}</ValidationError>
-            <Input
-              {...register("phone")}
-              placeholder="MOBILTELEFON (070 XXX XX XX)"
-            />
-            <ValidationError>{errors.phone?.message}</ValidationError>
-            <Input {...register("email")} placeholder="EPOSTADRESS" />
-            {/* Ändra tillbaka till type email när attrs funkar för det */}
-            <ValidationError>{errors.email?.message}</ValidationError>
+            <InputContainer>
+              <Input {...register("firstname")} placeholder="FÖRNAMN" />
+              <ValidationError>{errors.firstname?.message}</ValidationError>
+            </InputContainer>
+            <InputContainer>
+              <Input {...register("lastname")} placeholder="EFTERNAMN" />
+              <ValidationError>{errors.lastname?.message}</ValidationError>
+            </InputContainer>
+            <InputContainer>
+              <Input
+                {...register("phone")}
+                placeholder="MOBILTELEFON (070 XXX XX XX)"
+              />
+              <ValidationError>{errors.phone?.message}</ValidationError>
+            </InputContainer>
+            <InputContainer>
+              <Input {...register("email")} placeholder="EPOSTADRESS" />
+              {/* Ändra tillbaka till type email när attrs funkar för det */}
+              <ValidationError>{errors.email?.message}</ValidationError>
+            </InputContainer>
+
+            <MessageInput
+              type="text"
+              {...register("message")}
+              placeholder="MEDDELA ALLERGIER ELLER ÖNSKEMÅL"
+            ></MessageInput>
           </InputWrapper>
-          <MessageInput
-            type="text"
-            {...register("message")}
-            placeholder="MEDDELA ALLERGIER ELLER ÖNSKEMÅL"
-          ></MessageInput>
           <NextButton>Nästa</NextButton>
         </form>
       </GuestFormWrapper>
