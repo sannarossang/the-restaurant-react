@@ -14,8 +14,21 @@ interface ReservationProps {
   padding?: string;
 }
 
-export const ReservationWrapper = styled(ConfirmationWrapper)`
+export const ReservationWrapper = styled.div`
+  display: flex;
+  text-align: left;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+
   @media ${DeviceQuery.DESKTOP} {
+  }
+`;
+
+export const ReservationHeader = styled.h1`
+  font-size: 1.4em;
+  @media ${DeviceQuery.DESKTOP} {
+    font-size: 1.8em;
   }
 `;
 
@@ -30,9 +43,10 @@ export const ReservationDetails = styled(ConfirmationDetails)`
 `;
 
 export const ReservationText = styled.p<ReservationProps>`
-  font-size: ${(props: ReservationProps) => props.size || "12px"};
+  font-size: ${(props: ReservationProps) => props.size || "17px"};
   font-weight: ${(props: ReservationProps) => props.weight};
   @media ${DeviceQuery.DESKTOP} {
+    font-size: ${(props: ReservationProps) => props.size || "12px"};
   }
 `;
 
@@ -51,5 +65,6 @@ export const DeletedText = styled.h1<ReservationProps>`
 export const DeleteButton = styled(DefaultButton)`
   width: 70%;
   @media ${DeviceQuery.DESKTOP} {
+    width: 50%;
   }
 `;
