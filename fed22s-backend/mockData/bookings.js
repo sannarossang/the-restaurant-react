@@ -97,7 +97,55 @@ exports.bookings = [
   },
   {
     booker: {
-      firstname: "Sanna Late",
+      firstname: "Sebastian",
+      lastname: "Tegel",
+      email: "tegel@gmail.com",
+      phone: "0731231211",
+    },
+    guests: 12,
+    seatingTime: "21:00",
+    seatingDate: "2023-06-16",
+    message: "allergisk mot nötter",
+  },
+  {
+    booker: {
+      firstname: "Alexandra",
+      lastname: "Storbom",
+      email: "alexandra@gmail.com",
+      phone: "0731231215",
+    },
+    guests: 12,
+    seatingTime: "21:00",
+    seatingDate: "2023-06-16",
+    message: "",
+  },
+  {
+    booker: {
+      firstname: "Sanna",
+      lastname: "Rossäng",
+      email: "sanna.rossang@gmail.com",
+      phone: "0731231213",
+    },
+    guests: 12,
+    seatingTime: "21:00",
+    seatingDate: "2023-06-16",
+    message: "gillar inte jordgubbar",
+  },
+  {
+    booker: {
+      firstname: "Alf",
+      lastname: "Nordstrom",
+      email: "alf@gmail.com",
+      phone: "0731231216",
+    },
+    guests: 12,
+    seatingTime: "21:00",
+    seatingDate: "2023-06-16",
+    message: "allergisk mot allt",
+  },
+  {
+    booker: {
+      firstname: "Sanna",
       lastname: "Rossäng",
       email: "sanna.rossang@gmail.com",
       phone: "0731231211",
@@ -109,10 +157,10 @@ exports.bookings = [
   },
   {
     booker: {
-      firstname: "Sanna Late",
-      lastname: "Rossäng",
-      email: "sanna.rossang@gmail.com",
-      phone: "0731231211",
+      firstname: "Felicia",
+      lastname: "Calming",
+      email: "calming@gmail.com",
+      phone: "0731231213",
     },
     guests: 12,
     seatingTime: "21:00",
@@ -121,55 +169,7 @@ exports.bookings = [
   },
   {
     booker: {
-      firstname: "Sanna Late",
-      lastname: "Rossäng",
-      email: "sanna.rossang@gmail.com",
-      phone: "0731231211",
-    },
-    guests: 12,
-    seatingTime: "21:00",
-    seatingDate: "2023-06-16",
-    message: "allergisk mot nötter",
-  },
-  {
-    booker: {
-      firstname: "Sanna Late",
-      lastname: "Rossäng",
-      email: "sanna.rossang@gmail.com",
-      phone: "0731231211",
-    },
-    guests: 12,
-    seatingTime: "21:00",
-    seatingDate: "2023-06-16",
-    message: "allergisk mot nötter",
-  },
-  {
-    booker: {
-      firstname: "Sanna Late",
-      lastname: "Rossäng",
-      email: "sanna.rossang@gmail.com",
-      phone: "0731231211",
-    },
-    guests: 12,
-    seatingTime: "21:00",
-    seatingDate: "2023-06-16",
-    message: "allergisk mot nötter",
-  },
-  {
-    booker: {
-      firstname: "Sanna Late",
-      lastname: "Rossäng",
-      email: "sanna.rossang@gmail.com",
-      phone: "0731231211",
-    },
-    guests: 12,
-    seatingTime: "21:00",
-    seatingDate: "2023-06-16",
-    message: "allergisk mot nötter",
-  },
-  {
-    booker: {
-      firstname: "Sanna Late",
+      firstname: "Sanna",
       lastname: "Rossäng",
       email: "sanna.rossang@gmail.com",
       phone: "0731231211",
