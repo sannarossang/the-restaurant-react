@@ -3,6 +3,7 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { CurrentBookingDispatchContext } from "../../../../contexts/CurrentBookingContext";
 import { ActionType } from "../../../../reducers/CurrentBookingReducer";
+import { Spinner } from "../../../animation/Spinner";
 import { CalendarWrapper } from "../../../styled/Booking/BookingForm/Calendar";
 
 type ValuePiece = Date | null;
@@ -23,11 +24,7 @@ export const CalendarView = () => {
   return (
     <>
       <CalendarWrapper>
-        <Calendar
-          minDate={new Date()}
-          onChange={handleChange}
-          value={date}
-        ></Calendar>
+        <Calendar minDate={new Date()} onChange={handleChange} value={date}></Calendar>
       </CalendarWrapper>
     </>
   );

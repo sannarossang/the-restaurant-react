@@ -1,3 +1,4 @@
+import { Spinner } from "../../animation/Spinner";
 import { ContactForm } from "../../forms/ContactForm";
 import { ContactWrapper } from "../../styled/Contact/Contact";
 
