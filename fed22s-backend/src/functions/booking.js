@@ -4,8 +4,6 @@ exports.createBooking = async (req, res) => {
   try {
     const data = req.body;
 
-    //validera http body, återanvända update valideringen? bryta ut till egen funktion?
-
     const booking = new Booking({
       booker: {
         firstname: data.booker.firstname,
@@ -23,7 +21,7 @@ exports.createBooking = async (req, res) => {
       return response.status(500).json({ message: "Internal error" });
     }
     return res
-      .setHeader("Location", `http://localhost:${process.env.PORT}/api/v1/bookings/${newBooking._id}`) //ska vi ha toString()?
+      .setHeader("Location", `http://localhost:${process.env.PORT}/api/v1/bookings/${newBooking._id}`)
       .status(201)
       .json(newBooking);
   } catch (error) {
@@ -62,7 +60,6 @@ exports.updateBooking = async (req, res) => {
       return res.status(400).json({ message: "Invalid seatingDate" });
     }
 
-    //behöver validera korrekt tidsstämpel? använda enum från modellen?
     if (seatingTime == false) {
       return res.status(400).json({ message: "Invalid seatingTime" });
     }
@@ -82,8 +79,6 @@ exports.updateBooking = async (req, res) => {
     if (seatingDate) bookingToUpdate.seatingDate = seatingDate;
     if (message) bookingToUpdate.message = message;
 
-    //vilka fält ska admin kunna uppdatera? lägg till ta bort när vi är i front end
-
     const updatedBooking = await bookingToUpdate.save();
 
     return res.json(updatedBooking);
@@ -99,8 +94,6 @@ exports.getAllBookings = async (req, res) => {
   }
 
   const reqQuery = req.query.seatingDate;
-  // const reqQueryMinusOneDay = new Date().setDate(reqQuery.getDate() - 1);
-  // const reqQueryPlusOneDay = new Date().setDate(reqQuery.getDate() + 1);
   console.log("QUERY", reqQuery);
 
   if (!req.query.seatingDate) {
@@ -114,7 +107,6 @@ exports.getAllBookings = async (req, res) => {
   } else {
     try {
       const bookingByDate = await Booking.find({
-        // seatingDate: { $gte: reqQueryMinusOneDay, $lte: reqQueryPlusOneDay },
         seatingDate: reqQuery,
       });
       return res.json({

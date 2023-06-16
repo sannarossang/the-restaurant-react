@@ -26,9 +26,6 @@ const BookingSchema = new mongoose.Schema({
   seatingTime: {
     type: String,
     enum: ["18:00", "21:00"],
-    /*Eventuellt ändra datatyp till number sedan. Vi tänker att det är enklare att ha det som string
-    eftersom att Date också blir en string.
-    */
     required: true,
   },
   seatingDate: {
