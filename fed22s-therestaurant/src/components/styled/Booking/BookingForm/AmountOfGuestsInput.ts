@@ -23,7 +23,6 @@ export const AmountForm = styled.form`
   }
 
   .css-d7l1ni-option {
-    //HOVRAD GÄST
     background-color: transparent;
     border: 2px solid #ff1c6f;
     padding: 6px 10px;

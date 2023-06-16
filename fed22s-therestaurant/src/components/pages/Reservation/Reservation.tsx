@@ -15,7 +15,6 @@ import {
   ReservationText,
   ReservationWrapper,
 } from "../../styled/Reservation/Reservation";
-import { DefaultButton } from "../../styled/Buttons";
 
 export const Reservation = () => {
   const { bookingId } = useParams();

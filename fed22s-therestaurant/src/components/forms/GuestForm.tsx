@@ -1,6 +1,5 @@
 import { useForm } from "react-hook-form";
 import {
-  CancelButton,
   GuestFormWrapper,
   Input,
   InputContainer,
@@ -13,10 +12,7 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useContext } from "react";
-import {
-  CurrentBookingContext,
-  CurrentBookingDispatchContext,
-} from "../../contexts/CurrentBookingContext";
+import { CurrentBookingContext, CurrentBookingDispatchContext } from "../../contexts/CurrentBookingContext";
 import { ActionType } from "../../reducers/CurrentBookingReducer";
 
 const validationSchema = z.object({
@@ -52,7 +48,7 @@ export const GuestForm = () => {
     <>
       <GuestFormWrapper>
         <form
-          onSubmit={handleSubmit((data) => {
+          onSubmit={handleSubmit(data => {
             dispatch({
               type: ActionType.ADDED_CONTACT_DETAILS,
               payload: data,
@@ -71,10 +67,7 @@ export const GuestForm = () => {
               <ValidationError>{errors.lastname?.message}</ValidationError>
             </InputContainer>
             <InputContainer>
-              <Input
-                {...register("phone")}
-                placeholder="MOBILTELEFON (070 XXX XX XX)"
-              />
+              <Input {...register("phone")} placeholder="MOBILTELEFON (070 XXX XX XX)" />
               <ValidationError>{errors.phone?.message}</ValidationError>
             </InputContainer>
             <InputContainer>

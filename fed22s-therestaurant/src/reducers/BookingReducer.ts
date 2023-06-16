@@ -6,8 +6,6 @@ export interface IAction {
 }
 
 export enum ActionType {
-  CREATED,
-  UPDATED,
   DELETED,
   GOT_ALL_BOOKINGS,
   GOT_ONE_BOOKING,
@@ -20,12 +18,6 @@ export enum ActionType {
 
 export const BookingReducer = (bookings: IBookingContext, action: IAction): IBookingContext => {
   switch (action.type) {
-    case ActionType.CREATED: {
-    }
-
-    case ActionType.UPDATED: {
-    }
-
     case ActionType.DELETED: {
       const deleted = bookings.allBookings.filter(booking => booking._id !== action.payload);
       const filtered = bookings.filteredBooking.filter(booking => booking._id !== action.payload);

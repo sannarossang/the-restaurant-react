@@ -1,7 +1,7 @@
-import { ChangeEvent, useContext, useEffect, useReducer, useState } from "react";
+import { ChangeEvent, useEffect, useReducer, useState } from "react";
 import { BookingContext, BookingDispatchContext, IBookingContext } from "../../../contexts/BookingContext";
 import { ActionType, BookingReducer } from "../../../reducers/BookingReducer";
-import { createNewBooking, getBookings } from "../../../services/BookingService";
+import { getBookings } from "../../../services/BookingService";
 import { defaultBookingValues } from "../../../models/defaultBookingValues";
 import { AdminWrapper, CreateBookingBtn } from "../../styled/Admin/Admin";
 import { BookingsTable } from "./AdminBooking/BookingsTable";
@@ -11,7 +11,6 @@ import { CurrentBookingReducer } from "../../../reducers/CurrentBookingReducer";
 import { BookingSummary } from "../Booking/BookingForm/BookingSummary";
 import { BookingConfirmation } from "../Booking/BookingForm/BookingConfirmation";
 import { BookingModal, ExitButton, ModalContent, ModalNavWrapper, Title } from "../../styled/Booking/Booking";
-import { Link } from "react-router-dom";
 
 export const Admin = () => {
   const bookingStates: IBookingContext = {
