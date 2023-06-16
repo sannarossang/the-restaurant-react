@@ -1,8 +1,5 @@
 import { useReducer, useState } from "react";
-import {
-  CurrentBookingContext,
-  CurrentBookingDispatchContext,
-} from "../../../contexts/CurrentBookingContext";
+import { CurrentBookingContext, CurrentBookingDispatchContext } from "../../../contexts/CurrentBookingContext";
 import { CurrentBookingReducer } from "../../../reducers/CurrentBookingReducer";
 import { BookingForm } from "../../forms/BookingForm";
 import { defaultBookingValues } from "../../../models/defaultBookingValues";
@@ -19,10 +16,7 @@ import {
 import { Link } from "react-router-dom";
 
 export const Booking = () => {
-  const [currentBooking, dispatch] = useReducer(
-    CurrentBookingReducer,
-    defaultBookingValues
-  );
+  const [currentBooking, dispatch] = useReducer(CurrentBookingReducer, defaultBookingValues);
   return (
     <>
       <CurrentBookingContext.Provider value={currentBooking}>
@@ -36,15 +30,9 @@ export const Booking = () => {
                 </ExitButton>
               </ModalNavWrapper>
               <ModalContent>
-                {/* <BookingModal> */}
                 {!currentBooking.booker.email ? <BookingForm /> : <></>}
-                {currentBooking.booker.email && !currentBooking._id ? (
-                  <BookingSummary />
-                ) : (
-                  <></>
-                )}
+                {currentBooking.booker.email && !currentBooking._id ? <BookingSummary /> : <></>}
                 {currentBooking._id ? <BookingConfirmation /> : <></>}
-                {/* </BookingModal> */}
               </ModalContent>
             </BookingModal>
           </BookingWrapper>

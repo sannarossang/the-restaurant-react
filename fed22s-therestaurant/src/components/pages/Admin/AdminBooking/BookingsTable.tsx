@@ -1,9 +1,6 @@
 import { useContext } from "react";
 import { IBooking } from "../../../../models/IBooking";
-import {
-  BookingContext,
-  BookingDispatchContext,
-} from "../../../../contexts/BookingContext";
+import { BookingContext, BookingDispatchContext } from "../../../../contexts/BookingContext";
 import { deleteBooking } from "../../../../services/BookingService";
 import { ActionType } from "../../../../reducers/BookingReducer";
 
@@ -15,8 +12,6 @@ export const BookingsTable = () => {
     dispatch({ type: ActionType.DELETED, payload: id });
     deleteBooking("admin", id);
   };
-
-  console.log("Bookings table", filteredBooking);
 
   return (
     <>
@@ -34,7 +29,7 @@ export const BookingsTable = () => {
             <th>Tid</th>
             <th>Meddelande</th>
           </tr>
-          {filteredBooking.map((b) => (
+          {filteredBooking.map(b => (
             <tr key={b._id}>
               <td>{b._id}</td>
               <td>{b.booker.firstname}</td>

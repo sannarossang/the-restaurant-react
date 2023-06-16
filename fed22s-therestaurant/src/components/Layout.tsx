@@ -24,17 +24,11 @@ export const Layout = () => {
     };
 
     checkLocation();
-    console.log(location.pathname);
   }, [location]);
-
-  console.log(filter);
 
   return (
     <>
-      <ContentWrapper
-        className={filteredClass ? filteredClass : ""}
-        filter={filter}
-      >
+      <ContentWrapper className={filteredClass ? filteredClass : ""} filter={filter}>
         <header>
           <Navbar></Navbar>
         </header>

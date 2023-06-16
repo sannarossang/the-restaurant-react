@@ -18,6 +18,7 @@ import {
 } from "../../../styled/Booking/BookingSummary";
 import { ActionType } from "../../../../reducers/CurrentBookingReducer";
 import { Spinner } from "../../../animation/Spinner";
+import { Link } from "react-router-dom";
 
 export const BookingSummary = () => {
   const booking = useContext(CurrentBookingContext);
@@ -70,7 +71,9 @@ export const BookingSummary = () => {
         </GDPRWrapper>
 
         <ButtonContainer>
-          <CancelButton>Avbryt</CancelButton>
+          <CancelButton>
+            <Link to="/">Avbryt</Link>
+          </CancelButton>
           {!showSpinner ? (
             <ConfirmBookingButton disabled={!checked} onClick={handleBooking}>
               BOKA

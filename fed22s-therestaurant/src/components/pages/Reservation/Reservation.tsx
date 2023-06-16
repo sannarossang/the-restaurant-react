@@ -31,7 +31,6 @@ export const Reservation = () => {
     };
     getData();
   }, []);
-  console.log(booking);
 
   const handleDelete = (id: string) => {
     dispatch({ type: ActionType.DELETED, payload: bookingId || "" });

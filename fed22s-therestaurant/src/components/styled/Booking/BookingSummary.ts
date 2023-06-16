@@ -116,4 +116,9 @@ export const CancelButton = styled(DefaultButton)`
     background-color: lightgrey;
     border: none;
   }
+
+  a {
+    color: gray;
+    text-decoration: none;
+  }
 `;

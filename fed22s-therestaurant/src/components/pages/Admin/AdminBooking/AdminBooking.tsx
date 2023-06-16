@@ -8,9 +8,7 @@ export const AdminBooking = () => {
   return (
     <>
       <BookingForm></BookingForm>
-      <button onClick={() => createNewBooking("admin", newBooking)}>
-        BOKA FRÅN ADMIN
-      </button>
+      <button onClick={() => createNewBooking("admin", newBooking)}>BOKA FRÅN ADMIN</button>
     </>
   );
 };

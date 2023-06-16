@@ -36,7 +36,6 @@ export const ContactForm = () => {
 
   const { errors } = formState;
   const onSubmit: SubmitHandler<IContactFormInput> = data => {
-    console.log(data);
     reset();
   };
 
